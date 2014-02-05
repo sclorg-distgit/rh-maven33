@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -28,14 +28,14 @@ Summary:          Package containing common parts of %{scl}-runtime and %{scl}-b
 
 %package runtime
 Summary:    Package that handles %scl Software Collection.
-Requires:   scl-utils >= 20130529-2
+Requires:   scl-utils
 Requires:   %{name}-common = %{version}-%{release}
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
 
 %package build
-Requires:   scl-utils-build >= 20130529-2
+Requires:   scl-utils-build
 Requires:   %{name}-scldevel = %{version}-%{release}
 Summary:    Build support tools for the %scl Software Collection.
 
@@ -208,6 +208,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 05 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-2
+- Make scl-utils requires unversioned
+
 * Wed Feb 05 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-1
 - Initial maven30 scl metapackage
 
