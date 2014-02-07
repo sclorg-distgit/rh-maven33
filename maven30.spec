@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -40,7 +40,7 @@ Requires:   %{name}-scldevel = %{version}-%{release}
 Summary:    Build support tools for the %scl Software Collection.
 
 # provide this to workaround problems with initial build deps
-Provides:   java = 1.7.0
+Provides:   java = 1:1.7.0
 
 %description build
 Package shipping essential configuration marcros/files in order to be able
@@ -211,6 +211,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Fri Feb 07 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-4
+- Add epoch to provides to match original
+
 * Fri Feb 07 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-3
 - Build-provide java 1.7.0
 
