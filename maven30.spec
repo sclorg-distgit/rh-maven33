@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -37,6 +37,10 @@ Package shipping essential scripts to work with the %scl Software Collection.
 %package build
 Requires:   scl-utils-build
 Requires:   %{name}-scldevel = %{version}-%{release}
+Requires:   java-1.7.0-openjdk-devel
+# these are needed temporarily for config
+Requires:   javapackages-tools
+Requires:   maven-local
 Summary:    Build support tools for the %scl Software Collection.
 
 # provide this to workaround problems with initial build deps
@@ -73,6 +77,7 @@ export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
 # Not really needed by anything for now, but kept for consistency with
 # XDG_CONFIG_DIRS.
 export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export PYTHONPATH="%{python_sitelib}/javapackages/:\${PYTHONPATH:-}"
 EOF
 
 #===========#
@@ -176,9 +181,6 @@ EOF
 install -d -m 755 %{buildroot}%{_scl_scripts}
 install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
-install -d -m 755 %{buildroot}%{_sysconfdir}/java
-install -p -m 644 java.conf %{buildroot}%{_sysconfdir}/java/
-
 install -d -m 755 %{buildroot}%{_sysconfdir}/xdg/xmvn
 install -p -m 644 configuration.xml %{buildroot}%{_sysconfdir}/xdg/xmvn/
 
@@ -199,7 +201,6 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 
 %files common
 %{scl_files}
-%{_sysconfdir}/java/java.conf
 %{_sysconfdir}/xdg/xmvn/configuration.xml
 
 %files build
@@ -211,6 +212,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Fri Feb 07 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-5
+- Extend PYTHONPATH in enable scriptlet
+
 * Fri Feb 07 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-4
 - Add epoch to provides to match original
 
