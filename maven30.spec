@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    6%{?dist}
+Release:    7%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -77,7 +77,7 @@ export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
 # Not really needed by anything for now, but kept for consistency with
 # XDG_CONFIG_DIRS.
 export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-export PYTHONPATH="%{python_sitelib}:\${PYTHONPATH:-}"
+export PYTHONPATH="%{_scl_root}%{python_sitelib}:\${PYTHONPATH:-}"
 EOF
 
 #===========#
@@ -212,6 +212,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Tue Feb 11 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-7
+- Prefix PYTHONPATH with _scl_root
+
 * Tue Feb 11 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-6
 - Fix PYTHONPATH to root of python_sitelib instead of subdir
 
