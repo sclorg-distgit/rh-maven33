@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    9%{?dist}
+Release:    10%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -40,8 +40,12 @@ Requires:   %{name}-scldevel = %{version}-%{release}
 Requires:   java-1.7.0-openjdk-devel
 Summary:    Build support tools for the %scl Software Collection.
 
-# provide this to workaround problems with initial build deps
+# provide these to workaround problems with initial build deps
 Provides:   java = 1:1.7.0
+Provides:   javapackages-tools = 666
+Obsoletes:  javapackages-tools < 666
+Provides:   mvn(com.sun:tools) = SYSTEM
+Provides:   mvn(sun.jdk:jconsole) = SYSTEM
 
 %description build
 Package shipping essential configuration marcros/files in order to be able
@@ -102,6 +106,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Tue Feb 11 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-10
+- Provide and obsolete javapackages-tools
+
 * Tue Feb 11 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-9
 - Don't install XMvn configuration files
 
