@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    5%{?dist}
+Release:    6%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -212,6 +212,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Tue Feb 11 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-6
+- Fix PYTHONPATH to root of python_sitelib instead of subdir
+
 * Fri Feb 07 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1-5
 - Extend PYTHONPATH in enable scriptlet
 
