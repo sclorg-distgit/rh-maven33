@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    8%{?dist}
+Release:    9%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -38,9 +38,6 @@ Package shipping essential scripts to work with the %scl Software Collection.
 Requires:   scl-utils-build
 Requires:   %{name}-scldevel = %{version}-%{release}
 Requires:   java-1.7.0-openjdk-devel
-# these are needed temporarily for config
-Requires:   javapackages-tools
-Requires:   maven-local
 Summary:    Build support tools for the %scl Software Collection.
 
 # provide this to workaround problems with initial build deps
@@ -68,110 +65,7 @@ cat <<EOF >enable
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}:\${MANPATH}"
 
-# Needed by Java Packages Tools to locate java.conf
-export JAVACONFDIRS="%{_sysconfdir}/java:\${JAVACONFDIRS:-/etc/java}"
-
-# Required by XMvn to locate its configuration file(s)
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
-
-# Not really needed by anything for now, but kept for consistency with
-# XDG_CONFIG_DIRS.
-export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
-EOF
-
-#===========#
-# java.conf #
-#===========#
-cat <<EOF >java.conf
-# Java configuration file for %{scl} software collection.
-JAVA_LIBDIR=%{_javadir}
-JNI_LIBDIR=%{_jnidir}
-JVM_ROOT=%{_jvmdir}
-EOF
-
-#=============#
-# XMvn config #
-#=============#
-cat <<EOF >configuration.xml
-<!-- XMvn configuration file for %{scl} software collection -->
-<configuration>
-  <resolverSettings>
-    <prefixes>
-      <prefix>/opt/rh/%{scl}/root</prefix>
-    </prefixes>
-  </resolverSettings>
-  <installerSettings>
-    <metadataDir>opt/rh/%{scl}/root/usr/share/maven-fragments</metadataDir>
-  </installerSettings>
-  <repositories>
-    <repository>
-      <id>%{scl}-resolve</id>
-      <type>compound</type>
-      <properties>
-        <prefix>opt/rh/%{scl}/root</prefix>
-        <namespace>%{scl}</namespace>
-      </properties>
-      <configuration>
-        <repositories>
-          <repository>base-resolve</repository>
-        </repositories>
-      </configuration>
-    </repository>
-    <repository>
-      <id>resolve-system</id>
-      <type>compound</type>
-      <properties>
-        <prefix>/</prefix>
-      </properties>
-      <configuration>
-        <repositories>
-          <repository>%{scl}-resolve</repository>
-          <repository>base-resolve</repository>
-        </repositories>
-      </configuration>
-    </repository>
-    <repository>
-      <id>install</id>
-      <type>compound</type>
-      <properties>
-        <prefix>opt/rh/%{scl}/root</prefix>
-        <namespace>%{scl}</namespace>
-      </properties>
-      <configuration>
-        <repositories>
-          <repository>base-install</repository>
-        </repositories>
-      </configuration>
-    </repository>
-    <repository>
-      <id>install-raw-pom</id>
-      <type>compound</type>
-      <properties>
-        <prefix>opt/rh/%{scl}/root</prefix>
-        <namespace>%{scl}</namespace>
-      </properties>
-      <configuration>
-        <repositories>
-          <repository>base-raw-pom</repository>
-        </repositories>
-      </configuration>
-    </repository>
-    <repository>
-      <id>install-effective-pom</id>
-      <type>compound</type>
-      <properties>
-        <prefix>opt/rh/%{scl}/root</prefix>
-        <namespace>%{scl}</namespace>
-      </properties>
-      <configuration>
-        <repositories>
-          <repository>base-effective-pom</repository>
-        </repositories>
-      </configuration>
-    </repository>
-  </repositories>
-</configuration>
 EOF
 
 %install
@@ -180,9 +74,6 @@ EOF
 
 install -d -m 755 %{buildroot}%{_scl_scripts}
 install -p -m 755 enable %{buildroot}%{_scl_scripts}/
-
-install -d -m 755 %{buildroot}%{_sysconfdir}/xdg/xmvn
-install -p -m 644 configuration.xml %{buildroot}%{_sysconfdir}/xdg/xmvn/
 
 # install rpm magic
 install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{name}
@@ -201,7 +92,6 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 
 %files common
 %{scl_files}
-%{_sysconfdir}/xdg/xmvn/configuration.xml
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -212,6 +102,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Tue Feb 11 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-9
+- Don't install XMvn configuration files
+
 * Tue Feb 11 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-8
 - Avoid trailing colon in PYTHONPATH
 
