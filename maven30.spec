@@ -77,7 +77,7 @@ export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
 # Not really needed by anything for now, but kept for consistency with
 # XDG_CONFIG_DIRS.
 export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-export PYTHONPATH="%{python_sitelib}/javapackages/:\${PYTHONPATH:-}"
+export PYTHONPATH="%{python_sitelib}:\${PYTHONPATH:-}"
 EOF
 
 #===========#
