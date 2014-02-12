@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    10%{?dist}
+Release:    11%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -43,7 +43,6 @@ Summary:    Build support tools for the %scl Software Collection.
 # provide these to workaround problems with initial build deps
 Provides:   java = 1:1.7.0
 Provides:   javapackages-tools = 666
-Obsoletes:  javapackages-tools < 666
 Provides:   mvn(com.sun:tools) = SYSTEM
 Provides:   mvn(sun.jdk:jconsole) = SYSTEM
 
@@ -68,8 +67,11 @@ cat <<EOF >enable
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}:\${MANPATH}"
-
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
+
+export JAVACONFDIRS="%{_sysconfdir}/java"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg"
+export XDG_DATA_DIRS="%{_datadir}"
 EOF
 
 %install
@@ -106,6 +108,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-11
+- Temporarly add XMvn config variables to enable script
+
 * Tue Feb 11 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-10
 - Provide and obsolete javapackages-tools
 
