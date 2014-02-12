@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    14%{?dist}
+Release:    15%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -42,6 +42,7 @@ Summary:    Build support tools for the %scl Software Collection.
 
 # provide these to workaround problems with initial build deps
 Provides:   java = 1:1.7.0
+Provides:   java-devel = 1:1.7.0
 Provides:   javapackages-tools = 666
 Provides:   mvn(com.sun:tools) = SYSTEM
 Provides:   mvn(sun.jdk:jconsole) = SYSTEM
@@ -108,6 +109,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-15
+- Provide java-devel in addition to java
+
 * Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-14
 - Temporally add base RHEL to javapackages search path
 
