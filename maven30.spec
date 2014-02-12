@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    13%{?dist}
+Release:    14%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -69,7 +69,7 @@ export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}:\${MANPATH}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
-export JAVACONFDIRS="%{_sysconfdir}/java"
+export JAVACONFDIRS="%{_sysconfdir}/java:/etc/java"
 export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg"
 export XDG_DATA_DIRS="%{_datadir}"
 EOF
@@ -108,6 +108,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-14
+- Temporally add base RHEL to javapackages search path
+
 * Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-13
 - Set PYTHONPATH in requires/provides wrapper scripts
 
