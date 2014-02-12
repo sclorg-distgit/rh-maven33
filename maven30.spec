@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    11%{?dist}
+Release:    12%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -108,6 +108,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-12
+- Fix requires/provides wrapper scripts
+
 * Wed Feb 12 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-11
 - Temporarly add XMvn config variables to enable script
 

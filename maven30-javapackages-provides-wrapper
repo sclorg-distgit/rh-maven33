@@ -3,6 +3,6 @@
 while read filepath
 do
   if [[ "$filepath" == *maven-fragments/* ]]; then
-     echo "$filepath" | /usr/lib/rpm/maven.prov
+     echo "$filepath" | /opt/rh/maven30/root/usr/lib/rpm/maven.prov
   fi
 done < "${1:-/proc/${$}/fd/0}"
