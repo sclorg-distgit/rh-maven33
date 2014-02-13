@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    17%{?dist}
+Release:    18%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -30,6 +30,7 @@ Summary:          Package containing common parts of %{scl}-runtime and %{scl}-b
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   %{name}-common = %{version}-%{release}
+Requires:   %{scl_name}-maven-local
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -121,6 +122,9 @@ install -p -m 644 java.conf %{buildroot}%{_sysconfdir}/java-base/
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Thu Feb 13 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-18
+- Add requires on maven30-maven-local to maven30-runtime
+
 * Thu Feb 13 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-17
 - Install java.conf for base RHEL
 
