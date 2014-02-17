@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    18%{?dist}
+Release:    19%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -72,16 +72,9 @@ export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}:\${MANPATH}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
-export JAVACONFDIRS="%{_sysconfdir}/java:%{_sysconfdir}/java-base"
+export JAVACONFDIRS="%{_sysconfdir}/java"
 export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg"
 export XDG_DATA_DIRS="%{_datadir}"
-EOF
-
-# Temp java.conf for base RHEL 6
-cat <<EOF >java.conf
-JAVA_LIBDIR=/usr/share/java
-JNI_LIBDIR=/usr/lib/java
-JVM_ROOT=/usr/lib/jvm
 EOF
 
 %install
@@ -95,10 +88,6 @@ install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{name}
 install -Dpm0755 %{SOURCE2} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-provides-wrapper
 install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-requires-wrapper
-
-# XXX temp only
-install -d -m 755 %{buildroot}%{_sysconfdir}/java-base/
-install -p -m 644 java.conf %{buildroot}%{_sysconfdir}/java-base/
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -122,6 +111,9 @@ install -p -m 644 java.conf %{buildroot}%{_sysconfdir}/java-base/
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Mon Feb 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-19
+- Don't install java.conf for base RHEL
+
 * Thu Feb 13 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-18
 - Add requires on maven30-maven-local to maven30-runtime
 
