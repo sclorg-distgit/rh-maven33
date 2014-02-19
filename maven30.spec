@@ -2,8 +2,8 @@
 %scl_package %scl
 
 Name:       %scl_name
-Version:    1
-Release:    22%{?dist}
+Version:    3.0.5
+Release:    1%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -15,39 +15,33 @@ Source3:    %{scl_name}-javapackages-requires-wrapper
 BuildRequires:    scl-utils-build
 
 # This should eventually pull in maven itself
-Requires:         %{name}-runtime
+Requires:         %{name}-runtime = %{version}-%{release}
+Requires:         %{scl_name}-maven
 
 %description
 This is the main package for the %scl Software Collection.
 
-%package common
-Summary:          Package containing common parts of %{scl}-runtime and %{scl}-build sub packages.
-
-%description common
-%{summary}
-
 %package runtime
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
-Requires:   %{name}-common = %{version}-%{release}
-Requires:   %{scl_name}-maven-local
+Requires:   java-1.7.0-openjdk-devel
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
 
 %package build
+Summary:    Build support tools for the %scl Software Collection.
 Requires:   scl-utils-build
 Requires:   %{name}-scldevel = %{version}-%{release}
-Requires:   java-1.7.0-openjdk-devel
-Summary:    Build support tools for the %scl Software Collection.
 
 %description build
 Package shipping essential configuration marcros/files in order to be able
 to build %scl Software Collection.
 
 %package scldevel
-Requires:   %{name}-common = %{version}-%{release}
 Summary:    Package shipping development files for %scl
+Requires:   %{scl_name}-maven-local
+Requires:   %{name}-runtime = %{version}-%{release}
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -81,6 +75,10 @@ install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{name}
 install -Dpm0755 %{SOURCE2} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-provides-wrapper
 install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-requires-wrapper
 
+# install dirs used by some deps
+install -dm0755 %{buildroot}%{_prefix}/lib/rpm
+install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
+
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
 # installed by installing %{name}.
@@ -90,9 +88,9 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 # Why? Because we need enable and other config files in the build package
 # as well. It would be bad for build to require runtime.
 %files runtime
-
-%files common
 %{scl_files}
+%{_prefix}/lib/python2.6
+%{_prefix}/lib/rpm
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -103,6 +101,11 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Feb 19 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 3.0.5-1
+- Remove common subpackage
+- Fix up requires in subpackages on various parts of SCL and deps
+- Own a few unowned directories
+
 * Wed Feb 19 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-22
 - Ultimately remove provides for java and java-devel
 
