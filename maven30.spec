@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    3.0.5
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -101,6 +101,9 @@ install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Mon May 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-2
+- Mass rebuild 2014-05-26
+
 * Wed Feb 19 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 3.0.5-1
 - Remove common subpackage
 - Fix up requires in subpackages on various parts of SCL and deps
