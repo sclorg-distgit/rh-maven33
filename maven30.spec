@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    3.0.5
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -25,6 +25,7 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+AutoReqProv: no
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -84,9 +85,6 @@ install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
 # installed by installing %{name}.
 %files
 
-# Runtime doesn't have files, they are owned by the shared subpackage.
-# Why? Because we need enable and other config files in the build package
-# as well. It would be bad for build to require runtime.
 %files runtime
 %{scl_files}
 %{_prefix}/lib/python2.6
@@ -101,6 +99,9 @@ install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Mon May 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-3
+- Temporarly disable Python auto-requires
+
 * Mon May 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-2
 - Mass rebuild 2014-05-26
 
