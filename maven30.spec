@@ -3,7 +3,7 @@
 
 Name:       %scl_name
 Version:    3.0.5
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -77,7 +77,7 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 
 # install dirs used by some deps
 install -dm0755 %{buildroot}%{_prefix}/lib/rpm
-install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
+install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -86,7 +86,7 @@ install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
 
 %files runtime
 %{scl_files}
-%{_prefix}/lib/python2.6
+%{_prefix}/lib/python2.*
 %{_prefix}/lib/rpm
 
 %files build
@@ -98,6 +98,9 @@ install -dm0755 %{buildroot}%{_prefix}/lib/python2.6/site-packages
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Tue May 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-5
+- Use python_sitelib marco
+
 * Tue May 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-4
 - Re-enable Python auto-requires
 
