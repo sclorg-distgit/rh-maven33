@@ -11,8 +11,11 @@ License:    GPLv2+
 Source1:    macros.%{scl_name}
 Source2:    %{scl_name}-javapackages-provides-wrapper
 Source3:    %{scl_name}-javapackages-requires-wrapper
+Source4:    README
+Source5:    LICENSE
 
-BuildRequires:    scl-utils-build
+BuildRequires:  help2man
+BuildRequires:  scl-utils-build
 
 # This should eventually pull in maven itself
 Requires:         %{name}-runtime = %{version}-%{release}
@@ -63,6 +66,26 @@ export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg"
 export XDG_DATA_DIRS="%{_datadir}"
 EOF
 
+# This section generates README file from a template and creates man page
+# from that file, expanding RPM macros in the template file.
+cat >README <<'EOF'
+%{expand:%(cat %{SOURCE4})}
+EOF
+
+# copy the license file so %%files section sees it
+cp %{SOURCE5} .
+
+%build
+# generate a helper script that will be used by help2man
+cat >h2m_helper <<'EOF'
+#!/bin/bash
+[ "$1" == "--version" ] && echo "%{scl_name} %{version} Software Collection" || cat README
+EOF
+chmod a+x h2m_helper
+
+# generate the man page
+help2man -N --section 7 ./h2m_helper -o %{scl_name}.7
+
 %install
 # Parentheses are needed here as workaround for rhbz#1017085
 (%scl_install)
@@ -79,15 +102,21 @@ install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-re
 install -dm0755 %{buildroot}%{_prefix}/lib/rpm
 install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 
+# install generated man page
+mkdir -p %{buildroot}%{_mandir}/man7/
+install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
+
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
 # installed by installing %{name}.
 %files
 
 %files runtime
+%doc README LICENSE
 %{scl_files}
 %{_prefix}/lib/python2.*
 %{_prefix}/lib/rpm
+%{_mandir}/man7/%{scl_name}.*
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
