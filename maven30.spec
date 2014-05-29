@@ -2,8 +2,8 @@
 %scl_package %scl
 
 Name:       %scl_name
-Version:    3.0.5
-Release:    5%{?dist}
+Version:    1.1
+Release:    1%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -17,7 +17,6 @@ Source5:    LICENSE
 BuildRequires:  help2man
 BuildRequires:  scl-utils-build
 
-# This should eventually pull in maven itself
 Requires:         %{name}-runtime = %{version}-%{release}
 Requires:         %{scl_name}-maven
 
@@ -127,6 +126,9 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Thu May 29 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-1
+- Set metapackage version to 1.1
+
 * Tue May 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 3.0.5-5
 - Use python_sitelib marco
 
