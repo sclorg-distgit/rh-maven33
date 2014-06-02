@@ -1,9 +1,11 @@
 %{!?scl:%global scl maven30}
 %scl_package %scl
 
+%global debug_package %{nil}
+
 Name:       %scl_name
 Version:    1.1
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -126,6 +128,9 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Mon Jun  2 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-2
+- Disable debuginfo
+
 * Thu May 29 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-1
 - Set metapackage version to 1.1
 
