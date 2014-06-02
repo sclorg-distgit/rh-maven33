@@ -1,39 +1,40 @@
-Package %{scl_name} provides Apache Maven 3.0.5 with a set of Maven
-plugins delivered as a Software Collection.  For more information
-about Software Collections, see the scl(1) man page.  By installing
-the %{scl_name} collection, you will get Maven 3.0.5 with all required
-dependencies, including Java Development Kit.
+The %{scl_name} package provides Apache Maven 3.0.5 with a set of Maven
+plugins delivered as a Software Collection. For more information
+about Software Collections, see the scl(1) man page.
+
+Installing the %{scl_name} Software Collection gets you Maven 3.0.5
+with all required dependencies, including the Java Development Kit.
 
 Usage: scl enable %{scl} 'mvn'
 
 Software Collections allow you to build and execute applications which
-are not located in the filesystem root hierarchy, but are stored in an
-alternative location, which is %{_scl_root} in case
-of the %{scl_name} collection.
+are not located in the file system root hierarchy but instead are stored in
+an alternative location. The location is %{_scl_root} in
+case of the %{scl_name} Software Collection.
 
-Maven is a software project management and comprehension tool.  Based
+Maven is a software project management and comprehension tool. Based
 on the concept of a project object model (POM), Maven can manage a
 project's build, reporting and documentation from a central piece of
 information.
 
-When you want to work with the %{scl_name} collection, use the scl
-utility (see the scl(1) man page for usage) to enable the scl
-environment.
+When you want to start working with the %{scl_name} Software Collection, use the
+scl utility to enable the scl environment. See the scl(1) man page for
+usage.
 
 Examples:
 scl enable %{scl_name} 'command --arg'
-  Run a specific command with the argument --arg within the
-  %{scl_name} software collections environment.
+  Run a specific command with the argument --arg from within the
+  %{scl_name} Software Collection environment.
 
 scl enable %{scl_name} 'mvn'
-  Run mvn from the %{scl_name} software collection.
+  Run mvn from the %{scl_name} Software Collection.
 
 scl enable %{scl_name} bash
-  Run an interactive shell with the %{scl_name} software collection
+  Run an interactive shell with the %{scl_name} Software Collection
   enabled.
 
 scl enable %{scl_name} 'man mvn'
   Show man pages for the mvn command, which is a part of the
-  %{scl_name} software collection.
+  %{scl_name} Software Collection.
 
-Report bugs to <http://bugzilla.redhat.com>.
+Report any bugs to <http://bugzilla.redhat.com>.
