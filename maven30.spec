@@ -1,11 +1,13 @@
-%{!?scl:%global scl maven30}
+%{!?scl_name_base:%global scl_name_base maven}
+%{!?scl_name_version:%global scl_name_version 30}
+%{!?scl:%global scl %{scl_name_base}%{scl_name_version}}
 %scl_package %scl
 
 %global debug_package %{nil}
 
 Name:       %scl_name
 Version:    1.1
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -95,7 +97,7 @@ install -d -m 755 %{buildroot}%{_scl_scripts}
 install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
 # install rpm magic
-install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{name}
+install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 install -Dpm0755 %{SOURCE2} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-provides-wrapper
 install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-requires-wrapper
 
@@ -123,11 +125,15 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %files scldevel
-%{_root_sysconfdir}/rpm/macros.%{scl_name}
+%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 %{_root_prefix}/lib/rpm/%{name}-javapackages-provides-wrapper
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Thu Jul 31 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-4
+- Add %%scl_maven and %%scl_prefix_maven macros to scldevel package
+- Resolves: rhbz#1125274
+
 * Mon Jun  2 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-3
 - Update README file
 
