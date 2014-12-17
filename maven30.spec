@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -46,8 +46,11 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-Requires:   %{scl_name}-maven-local
+# XXX use macro for rh-java-common
+Requires:   rh-java-common-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
+# XXX use macro for rh-java-common
+Requires:   rh-java-common-scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -59,14 +62,17 @@ packages depending on %scl Software Collection.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
+# XXX use macro for rh-java-common
+. scl_source enable rh-java-common
+
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}:\${MANPATH}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
-export JAVACONFDIRS="%{_sysconfdir}/java"
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg"
-export XDG_DATA_DIRS="%{_datadir}"
+export JAVACONFDIRS="%{_sysconfdir}/java:\$JAVACONFDIRS"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\$XDG_CONFIG_DIRS"
+export XDG_DATA_DIRS="%{_datadir}:\$XDG_DATA_DIRS"
 EOF
 
 # This section generates README file from a template and creates man page
@@ -130,6 +136,9 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Dec 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-5
+- Add dependency on rh-java-common
+
 * Thu Jul 31 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-4
 - Add %%scl_maven and %%scl_prefix_maven macros to scldevel package
 - Resolves: rhbz#1125274
