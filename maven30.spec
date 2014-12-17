@@ -7,14 +7,12 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    5%{?dist}
+Release:    6%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
 #URL:         
 Source1:    macros.%{scl_name}
-Source2:    %{scl_name}-javapackages-provides-wrapper
-Source3:    %{scl_name}-javapackages-requires-wrapper
 Source4:    README
 Source5:    LICENSE
 
@@ -104,8 +102,6 @@ install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
 # install rpm magic
 install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
-install -Dpm0755 %{SOURCE2} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-provides-wrapper
-install -Dpm0755 %{SOURCE3} %{buildroot}%{_rpmconfigdir}/%{name}-javapackages-requires-wrapper
 
 # install dirs used by some deps
 install -dm0755 %{buildroot}%{_prefix}/lib/rpm
@@ -132,10 +128,11 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
 %files scldevel
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
-%{_root_prefix}/lib/rpm/%{name}-javapackages-provides-wrapper
-%{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Wed Dec 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-6
+- Switch to dependency generator from rh-java-common
+
 * Wed Dec 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-5
 - Add dependency on rh-java-common
 

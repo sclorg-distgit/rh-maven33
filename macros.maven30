@@ -2,8 +2,4 @@
 %scl_prefix_maven maven30-
 
 # macro to invoke the javapackages provides and requires generators on el6
-%maven_find_provides_and_requires %{expand: \
-%global _use_internal_dependency_generator 0
-%global __find_provides %{_rpmconfigdir}/maven30-javapackages-provides-wrapper
-%global __find_requires %{_rpmconfigdir}/maven30-javapackages-requires-wrapper
-}
+%maven_find_provides_and_requires %{java_common_find_provides_and_requires}
