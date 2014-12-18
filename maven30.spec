@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    6%{?dist}
+Release:    7%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -73,6 +73,13 @@ export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\$XDG_CONFIG_DIRS"
 export XDG_DATA_DIRS="%{_datadir}:\$XDG_DATA_DIRS"
 EOF
 
+# Generate Eclipse configuration file
+cat <<EOF >eclipse.conf
+eclipse.bundles=%{_javadir},%{_jnidir}
+scl.namespace=%{?scl}
+scl.root=%{?_scl_root}
+EOF
+
 # This section generates README file from a template and creates man page
 # from that file, expanding RPM macros in the template file.
 cat >README <<'EOF'
@@ -111,6 +118,10 @@ install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 mkdir -p %{buildroot}%{_mandir}/man7/
 install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
+# eclipse.conf
+install -m 755 -d %{buildroot}%{_javaconfdir}
+install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
+
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
 # installed by installing %{name}.
@@ -122,6 +133,7 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_prefix}/lib/python2.*
 %{_prefix}/lib/rpm
 %{_mandir}/man7/%{scl_name}.*
+%{_javaconfdir}/eclipse.conf
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -130,6 +142,9 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Dec 18 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-7
+- Add eclipse.conf file
+
 * Wed Dec 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-6
 - Switch to dependency generator from rh-java-common
 
