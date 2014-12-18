@@ -13,6 +13,7 @@ Summary:    Package that installs %scl
 License:    GPLv2+
 #URL:         
 Source1:    macros.%{scl_name}
+Source2:    javapackages-config.json
 Source4:    README
 Source5:    LICENSE
 
@@ -118,9 +119,10 @@ install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 mkdir -p %{buildroot}%{_mandir}/man7/
 install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
-# eclipse.conf
+# eclipse.conf and javapackages-config.json
 install -m 755 -d %{buildroot}%{_javaconfdir}
 install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
+install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -133,7 +135,7 @@ install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 %{_prefix}/lib/python2.*
 %{_prefix}/lib/rpm
 %{_mandir}/man7/%{scl_name}.*
-%{_javaconfdir}/eclipse.conf
+%{_javaconfdir}/*
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -144,6 +146,7 @@ install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 %changelog
 * Thu Dec 18 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-7
 - Add eclipse.conf file
+- Add javapackages-config.json
 
 * Wed Dec 17 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-6
 - Switch to dependency generator from rh-java-common
