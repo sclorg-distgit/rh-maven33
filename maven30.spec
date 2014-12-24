@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    7%{?dist}
+Release:    8%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -144,6 +144,9 @@ install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Dec 24 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-8
+- Avoid generating requires on java-headless
+
 * Thu Dec 18 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-7
 - Add eclipse.conf file
 - Add javapackages-config.json

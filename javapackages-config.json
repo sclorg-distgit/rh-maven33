@@ -4,7 +4,7 @@
             "maven30-runtime"
         ],
         "java_requires": {
-            "package_name": "java-headless",
+            "package_name": "java",
             "always_generate": true,
             "skip": false
         },
