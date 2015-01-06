@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    9%{?dist}
+Release:    10%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -81,6 +81,13 @@ scl.namespace=%{?scl}
 scl.root=%{?_scl_root}
 EOF
 
+# Generate java.conf
+cat <<EOF >java.conf
+JAVA_LIBDIR=/opt/rh/%{scl_name}/root/usr/share/java
+JNI_LIBDIR=/opt/rh/%{scl_name}/root/usr/lib/java
+JVM_ROOT=/opt/rh/%{scl_name}/root/usr/lib/jvm
+EOF
+
 # This section generates README file from a template and creates man page
 # from that file, expanding RPM macros in the template file.
 cat >README <<'EOF'
@@ -119,10 +126,11 @@ install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 mkdir -p %{buildroot}%{_mandir}/man7/
 install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
-# eclipse.conf and javapackages-config.json
+# eclipse.conf, java.conf and javapackages-config.json
 install -m 755 -d %{buildroot}%{_javaconfdir}
 install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
+install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -144,6 +152,9 @@ install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 06 2015 Michal Srb <msrb@redhat.com> - 1.1-10
+- Add java.conf for maven30
+
 * Tue Jan 06 2015 Michael Simacek <msimacek@redhat.com> - 1.1-9
 - Mass rebuild 2015-01-06
 
