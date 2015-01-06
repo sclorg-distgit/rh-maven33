@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    8%{?dist}
+Release:    9%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -144,6 +144,9 @@ install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 06 2015 Michael Simacek <msimacek@redhat.com> - 1.1-9
+- Mass rebuild 2015-01-06
+
 * Wed Dec 24 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-8
 - Avoid generating requires on java-headless
 
