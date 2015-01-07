@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    12%{?dist}
+Release:    13%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -130,7 +130,7 @@ install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
 install -m 755 -d %{buildroot}%{_sysconfdir}/xdg/xmvn
-install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/
+install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.xml
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -152,6 +152,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-13
+- Fix XMvn config location
+
 * Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-12
 - Install XMvn configuration
 
