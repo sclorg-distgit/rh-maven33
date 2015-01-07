@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    10%{?dist}
+Release:    11%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -45,11 +45,9 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-# XXX use macro for rh-java-common
-Requires:   rh-java-common-maven-local
+Requires:   %{scl_java_common}-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
-# XXX use macro for rh-java-common
-Requires:   rh-java-common-scldevel
+Requires:   %{scl_java_common}-scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -61,8 +59,7 @@ packages depending on %scl Software Collection.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
-# XXX use macro for rh-java-common
-. scl_source enable rh-java-common
+. /opt/rh/%{scl_java_common}/enable
 
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
@@ -152,6 +149,9 @@ install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-11
+- Don't use scl_source to enable %{scl_java_common}
+
 * Tue Jan 06 2015 Michal Srb <msrb@redhat.com> - 1.1-10
 - Add java.conf for maven30
 
