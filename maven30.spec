@@ -7,13 +7,14 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    11%{?dist}
+Release:    12%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
 #URL:         
 Source1:    macros.%{scl_name}
 Source2:    javapackages-config.json
+Source3:    xmvn-configuration.xml
 Source4:    README
 Source5:    LICENSE
 
@@ -123,11 +124,13 @@ install -dm0755 %{buildroot}%{_scl_root}%{python_sitelib}
 mkdir -p %{buildroot}%{_mandir}/man7/
 install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
-# eclipse.conf, java.conf and javapackages-config.json
+# eclipse.conf, java.conf, javapackages-config.json and XMvn config
 install -m 755 -d %{buildroot}%{_javaconfdir}
 install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 install -m 644 -p %{SOURCE2} %{buildroot}%{_javaconfdir}/
 install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
+install -m 755 -d %{buildroot}%{_sysconfdir}/xdg/xmvn
+install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -149,6 +152,9 @@ install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-12
+- Install XMvn configuration
+
 * Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-11
 - Don't use scl_source to enable %{scl_java_common}
 

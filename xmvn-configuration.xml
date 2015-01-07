@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<configuration xmlns="http://fedorahosted.org/xmvn/CONFIG/2.0.0">
+  <installerSettings>
+    <metadataDir>opt/rh/rh-java-common/root/usr/share/maven-metadata</metadataDir>
+  </installerSettings>
+  <repositories>
+    <repository>
+      <id>install</id>
+      <type>compound</type>
+      <properties>
+        <prefix>opt/rh/maven30/root</prefix>
+        <namespace>maven30</namespace>
+      </properties>
+      <configuration>
+        <repositories>
+          <repository>base-install</repository>
+        </repositories>
+      </configuration>
+    </repository>
+  </repositories>
+</configuration>
