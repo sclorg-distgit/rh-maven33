@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    13%{?dist}
+Release:    14%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -95,6 +95,39 @@ EOF
 # copy the license file so %%files section sees it
 cp %{SOURCE5} .
 
+cp %{SOURCE1} macros.%{scl_name}
+cat >> macros.%{scl_name} << EOF
+%%_sysconfdir_maven %_sysconfdir
+%%_prefix_maven %_prefix
+%%_exec_prefix_maven %_exec_prefix
+%%_bindir_maven %_bindir
+%%_libdir_maven %_libdir
+%%_libexecdir_maven %_libexecdir
+%%_sbindir_maven %_sbindir
+%%_sharedstatedir_maven %_sharedstatedir
+%%_datarootdir_maven %_datarootdir
+%%_datadir_maven %_datadir
+%%_includedir_maven %_includedir
+%%_infodir_maven %_infodir
+%%_mandir_maven %_mandir
+%%_localstatedir_maven %_localstatedir
+%%_initddir_maven %_initddir
+%%_javadir_maven %_javadir
+%%_jnidir_maven %_jnidir
+%%_javadocdir_maven %_javadocdir
+%%_mavenpomdir_maven %_mavenpomdir
+%%_jvmdir_maven %_jvmdir
+%%_jvmsysconfdir_maven %_jvmsysconfdir
+%%_jvmcommonsysconfdir_maven %_jvmcommonsysconfdir
+%%_jvmjardir_maven %_jvmjardir
+%%_jvmprivdir_maven %_jvmprivdir
+%%_jvmlibdir_maven %_jvmlibdir
+%%_jvmdatadir_maven %_jvmdatadir
+%%_jvmcommonlibdir_maven %_jvmcommonlibdir
+%%_jvmcommondatadir_maven %_jvmcommondatadir
+%%_javaconfdir_maven %_javaconfdir
+EOF
+
 %build
 # generate a helper script that will be used by help2man
 cat >h2m_helper <<'EOF'
@@ -114,7 +147,7 @@ install -d -m 755 %{buildroot}%{_scl_scripts}
 install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
 # install rpm magic
-install -Dpm0644 %{SOURCE1} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
+install -Dpm0644 macros.%{scl_name} %{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 # install dirs used by some deps
 install -dm0755 %{buildroot}%{_prefix}/lib/rpm
@@ -152,6 +185,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 13 2015 Michael Simacek <msimacek@redhat.com>
+- Generates macros for directories
+
 * Wed Jan  7 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-13
 - Fix XMvn config location
 
