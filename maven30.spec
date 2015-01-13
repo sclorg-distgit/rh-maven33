@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    14%{?dist}
+Release:    15%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -185,6 +185,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 13 2015 Michael Simacek <msimacek@redhat.com> - 1.1-15
+- Mass rebuild 2015-01-13
+
 * Tue Jan 13 2015 Michael Simacek <msimacek@redhat.com>
 - Generates macros for directories
 
