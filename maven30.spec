@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    18%{?dist}
+Release:    19%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -413,6 +413,15 @@ install -m 644 -p java.conf %{buildroot}%{_javaconfdir}/
 install -m 755 -d %{buildroot}%{_sysconfdir}/xdg/xmvn
 install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.xml
 
+install -m 755 -d %{buildroot}%{_jnidir}
+install -m 755 -d %{buildroot}%{_javadir}
+install -m 755 -d %{buildroot}%{_javadocdir}
+install -m 755 -d %{buildroot}%{_mandir}/man1
+install -m 755 -d %{buildroot}%{_mandir}/man7
+install -m 755 -d %{buildroot}%{_datadir}/maven-metadata
+install -m 755 -d %{buildroot}%{_mavenpomdir}
+install -m 755 -d %{buildroot}%{_datadir}/xmvn
+
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
 # installed by installing %{name}.
@@ -425,115 +434,14 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_prefix}/lib/rpm
 %{_mandir}/man7/%{scl_name}.*
 %{_javaconfdir}/*
-# Own directories created by other packages.  This way they won't be
-# created unless needed, but after erase there will be no empty
-# directories left behind.
-%ghost %dir %attr(755,root,root) %{_sysconfdir}/ant.d
-%ghost %dir %attr(755,root,root) %{_sysconfdir}/java
-%ghost %dir %attr(755,root,root) %{_jnidir}
-%ghost %dir %attr(755,root,root) %{_javadir}
-%ghost %dir %attr(755,root,root) %{_javadir}/ant
-%ghost %dir %attr(755,root,root) %{_javadocdir}
-%ghost %dir %attr(755,root,root) %{_mandir}/man1
-%ghost %dir %attr(755,root,root) %{_mandir}/man7
-%ghost %dir %attr(755,root,root) %{_datadir}/maven-metadata
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/aether
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-commons-jexl
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-commons-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-commons-vfs
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-rat
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/apache-resource-bundles
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/cal10n
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/exec-maven-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/felix
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/felix-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/forge-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/fusesource-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/geronimo-osgi-support
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/geronimo-parent-poms
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/guice
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/httpcomponents
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/javacc-maven-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jboss-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jboss-specs-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jetty-artifact-remote-resources
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jetty-distribution-remote-resources
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jetty-toolchain
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jetty-version-maven-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jsr-305
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/jvnet-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/keytool-maven-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-antrun-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-archiver
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-artifact-resolver
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-assembly-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-changes-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-clean-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-common-artifact-filters
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-compiler-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-dependency-analyzer
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-dependency-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-dependency-tree
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-deploy-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-downloader
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-doxia
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-doxia-sitetools
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-doxia-tools
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-enforcer
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-file-management
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-filtering
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-gpg-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-install-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-invoker-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-jar-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-javadoc-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-jxr
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-osgi
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-plugin-build-helper
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-plugins-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-plugin-testing
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-plugin-tools
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-project-info-reports-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-release
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-reporting-api
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-reporting-exec
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-reporting-impl
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-repository-builder
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-resources-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-scm
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-script-interpreter
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-shade-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-shared
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-shared-incremental
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-shared-io
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-shared-utils
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-site-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-surefire
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-verifier
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-wagon
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/maven-war-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/modello
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/mojo-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/munge-maven-plugin
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-compiler
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-component-api
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-component-factories-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-components-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-containers
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-mail-sender
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/plexus-tools-pom
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/sisu
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/sonatype-oss-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/sonatype-plugins-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/spice-parent
-%ghost %dir %attr(755,root,root) %{_mavenpomdir}/xmvn
-%ghost %dir %attr(755,root,root) %{_datadir}/xmvn
+%dir %{_jnidir}
+%dir %{_javadir}
+%dir %{_javadocdir}
+%dir %{_mandir}/man1
+%dir %{_mandir}/man7
+%dir %{_datadir}/maven-metadata
+%dir %{_mavenpomdir}
+%dir %{_datadir}/xmvn
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -542,6 +450,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-19
+- Revert adding directory ownership
+
 * Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-18
 - Add explicit directory attributes
 
