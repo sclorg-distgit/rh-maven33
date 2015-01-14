@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    17%{?dist}
+Release:    18%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -542,6 +542,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-18
+- Add explicit directory attributes
+
 * Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-17
 - Own directories created by other packages
 
