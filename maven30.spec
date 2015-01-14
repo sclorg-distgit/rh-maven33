@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    15%{?dist}
+Release:    16%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -31,6 +31,184 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+# Obsolete packages which were shipped in RHSCL 1.2, but removed in RHSCL 2.0
+Obsoletes:  %{scl_name}-ant < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-antlr < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-bcel < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-bsf < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-log4j < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-oro < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-regexp < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-resolver < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-apache-xalan2 < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-commons-logging < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-commons-net < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-javamail < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-jdepend < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-jmf < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-jsch < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-junit < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-manual < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-swing < 1.9.2-9.21
+Obsoletes:  %{scl_name}-ant-testutil < 1.9.2-9.21
+Obsoletes:  %{scl_name}-antlr-C++ < 2.7.7-29.15.el7.x86_64
+Obsoletes:  %{scl_name}-antlr-C++-doc < 2.7.7-29.15
+Obsoletes:  %{scl_name}-antlr-manual < 2.7.7-29.15
+Obsoletes:  %{scl_name}-antlr-tool < 2.7.7-29.15
+Obsoletes:  %{scl_name}-apache-commons-beanutils < 1.8.3-14.12
+Obsoletes:  %{scl_name}-apache-commons-cli < 1.2-13.11
+Obsoletes:  %{scl_name}-apache-commons-codec < 1.8-7.11
+Obsoletes:  %{scl_name}-apache-commons-collections < 3.2.1-21.11
+Obsoletes:  %{scl_name}-apache-commons-collections-testframework < 3.2.1-21.11
+Obsoletes:  %{scl_name}-apache-commons-compress < 1.5-4.11
+Obsoletes:  %{scl_name}-apache-commons-dbcp < 1.4-17.11
+Obsoletes:  %{scl_name}-apache-commons-io < 1:2.4-12.10
+Obsoletes:  %{scl_name}-apache-commons-lang < 2.6-15.10
+Obsoletes:  %{scl_name}-apache-commons-logging < 1.1.2-7.14
+Obsoletes:  %{scl_name}-apache-commons-net < 3.2-8.10
+Obsoletes:  %{scl_name}-apache-commons-pool < 1.6-9.11
+Obsoletes:  %{scl_name}-atinject < 1-13.20100611svn86.8
+Obsoletes:  %{scl_name}-atinject-tck < 1-13.20100611svn86.8
+Obsoletes:  %{scl_name}-batik < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-demo < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-rasterizer < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-slideshow < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-squiggle < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-svgpp < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-batik-ttf2svg < 1.8-0.12.svn1230816.12
+Obsoletes:  %{scl_name}-bcel < 5.2-18.11
+Obsoletes:  %{scl_name}-bea-stax < 1.2.0-9.12
+Obsoletes:  %{scl_name}-bea-stax-api < 1.2.0-9.12
+Obsoletes:  %{scl_name}-bsf < 2.4.0-19.11
+Obsoletes:  %{scl_name}-dom4j < 1.6.1-20.10
+Obsoletes:  %{scl_name}-dom4j-demo < 1.6.1-20.10
+Obsoletes:  %{scl_name}-dom4j-manual < 1.6.1-20.10
+Obsoletes:  %{scl_name}-easymock < 1.2-22.13
+Obsoletes:  %{scl_name}-easymock2 < 2.5.2-12.14
+Obsoletes:  %{scl_name}-ecj < 1:4.2.1-8.12.el7.x86_64
+Obsoletes:  %{scl_name}-felix-framework < 4.2.1-5.10
+Obsoletes:  %{scl_name}-geronimo-annotation < 1.0-15.11
+Obsoletes:  %{scl_name}-geronimo-jaspic-spec < 1.1-9.10
+Obsoletes:  %{scl_name}-geronimo-jta < 1.1.1-17.10
+Obsoletes:  %{scl_name}-glassfish-el < 2.2.5-6.11
+Obsoletes:  %{scl_name}-glassfish-el-api < 2.2.4-5.10
+Obsoletes:  %{scl_name}-glassfish-jsp < 2.2.6-11.10
+Obsoletes:  %{scl_name}-glassfish-jsp-api < 2.2.1-9.10
+Obsoletes:  %{scl_name}-guava < 13.0-6.10
+Obsoletes:  %{scl_name}-hamcrest < 1.3-6.12
+Obsoletes:  %{scl_name}-hamcrest-demo < 1.3-6.12
+Obsoletes:  %{scl_name}-hawtjni < 1.6-9.11
+Obsoletes:  %{scl_name}-isorelax < 1:0-0.15.release20050331.11
+Obsoletes:  %{scl_name}-jai-imageio-core < 1.2-0.14.20100217cvs.13
+Obsoletes:  %{scl_name}-jakarta-commons-httpclient < 1:3.1-15.13
+Obsoletes:  %{scl_name}-jakarta-commons-httpclient-demo < 1:3.1-15.13
+Obsoletes:  %{scl_name}-jakarta-commons-httpclient-manual < 1:3.1-15.13
+Obsoletes:  %{scl_name}-jakarta-oro < 2.0.8-16.11
+Obsoletes:  %{scl_name}-jakarta-taglibs-standard < 1.1.2-11.12
+Obsoletes:  %{scl_name}-jansi < 1.9-7.11
+Obsoletes:  %{scl_name}-jansi-native < 1.4-10.11.el7.x86_64
+Obsoletes:  %{scl_name}-java_cup < 1:0.11a-16.12
+Obsoletes:  %{scl_name}-java_cup-manual < 1:0.11a-16.12
+Obsoletes:  %{scl_name}-javamail < 1.4.6-8.11
+Obsoletes:  %{scl_name}-javapackages-tools < 4.3.2-1.4
+Obsoletes:  %{scl_name}-jaxen < 1.1.3-11.11
+Obsoletes:  %{scl_name}-jaxen-demo < 1.1.3-11.11
+Obsoletes:  %{scl_name}-jcl-over-slf4j < 1.7.4-3.17
+Obsoletes:  %{scl_name}-jdepend < 2.9.1-10.13
+Obsoletes:  %{scl_name}-jdepend-demo < 2.9.1-10.13
+Obsoletes:  %{scl_name}-jdom < 1.1.3-6.12
+Obsoletes:  %{scl_name}-jdom-demo < 1.1.3-6.12
+Obsoletes:  %{scl_name}-jetty-annotations < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-ant < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-client < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-continuation < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-deploy < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-http < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-io < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jaas < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jaspi < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jmx < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jndi < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jsp < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-jspc-maven-plugin < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-maven-plugin < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-monitor < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-plus < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-project < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-proxy < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-rewrite < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-runner < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-security < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-server < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-servlet < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-servlets < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-start < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-util < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-util-ajax < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-webapp < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-api < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-client < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-common < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-parent < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-server < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-websocket-servlet < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jetty-xml < 9.0.3-8.14
+Obsoletes:  %{scl_name}-jsch < 0.1.50-5.12
+Obsoletes:  %{scl_name}-jsch-demo < 0.1.50-5.12
+Obsoletes:  %{scl_name}-jsoup < 1.6.1-10.9
+Obsoletes:  %{scl_name}-jul-to-slf4j < 1.7.4-3.17
+Obsoletes:  %{scl_name}-junit < 4.11-8.12
+Obsoletes:  %{scl_name}-junit-demo < 4.11-8.12
+Obsoletes:  %{scl_name}-junit-manual < 4.11-8.12
+Obsoletes:  %{scl_name}-jzlib < 1.1.1-6.9
+Obsoletes:  %{scl_name}-jzlib-demo < 1.1.1-6.9
+Obsoletes:  %{scl_name}-log4j < 1.2.17-15.13
+Obsoletes:  %{scl_name}-log4j-manual < 1.2.17-15.13
+Obsoletes:  %{scl_name}-log4j-over-slf4j < 1.7.4-3.17
+Obsoletes:  %{scl_name}-maven-hawtjni-plugin < 1.6-9.11
+Obsoletes:  %{scl_name}-maven-local < 4.3.2-1.4
+Obsoletes:  %{scl_name}-msv-demo < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-msv-manual < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-msv-msv < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-msv-rngconv < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-msv-xmlgen < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-msv-xsdlib < 1:2013.5.1-6.13
+Obsoletes:  %{scl_name}-nekohtml < 1.9.14-13.12
+Obsoletes:  %{scl_name}-nekohtml-demo < 1.9.14-13.12
+Obsoletes:  %{scl_name}-objectweb-asm < 3.3.1-9.13
+Obsoletes:  %{scl_name}-python-javapackages < 4.3.2-1.4
+Obsoletes:  %{scl_name}-qdox < 1.12.1-9.12
+Obsoletes:  %{scl_name}-regexp < 1.5-13.13
+Obsoletes:  %{scl_name}-relaxngDatatype < 1.0-11.10
+Obsoletes:  %{scl_name}-slf4j < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-api < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-jdk14 < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-migrator < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-nop < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-parent < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-simple < 1.7.4-3.17
+Obsoletes:  %{scl_name}-slf4j-site < 1.7.4-3.17
+Obsoletes:  %{scl_name}-tomcat-el-2.2-api < 7.0.42-1.17
+Obsoletes:  %{scl_name}-tomcat-jsp-2.2-api < 7.0.42-1.17
+Obsoletes:  %{scl_name}-tomcat-lib < 7.0.42-1.17
+Obsoletes:  %{scl_name}-tomcat-servlet-3.0-api < 7.0.42-1.17
+Obsoletes:  %{scl_name}-ws-commons-util < 1.0.1-29.11
+Obsoletes:  %{scl_name}-ws-jaxme < 0.5.2-10.10
+Obsoletes:  %{scl_name}-ws-jaxme-manual < 0.5.2-10.10
+Obsoletes:  %{scl_name}-xalan-j2 < 2.7.1-23.6
+Obsoletes:  %{scl_name}-xalan-j2-demo < 2.7.1-23.6
+Obsoletes:  %{scl_name}-xalan-j2-manual < 2.7.1-23.6
+Obsoletes:  %{scl_name}-xalan-j2-xsltc < 2.7.1-23.6
+Obsoletes:  %{scl_name}-xbean < 3.13-6.10
+Obsoletes:  %{scl_name}-xerces-j2 < 2.11.0-17.6
+Obsoletes:  %{scl_name}-xerces-j2-demo < 2.11.0-17.6
+Obsoletes:  %{scl_name}-xml-commons-resolver < 1.2-15.12
+Obsoletes:  %{scl_name}-xmlrpc-client < 1:3.1.3-8.12
+Obsoletes:  %{scl_name}-xmlrpc-common < 1:3.1.3-8.12
+Obsoletes:  %{scl_name}-xmlrpc-server < 1:3.1.3-8.12
+Obsoletes:  %{scl_name}-xpp3 < 1.1.3.8-11.11
+Obsoletes:  %{scl_name}-xpp3-minimal < 1.1.3.8-11.11
+Obsoletes:  %{scl_name}-xz-java < 1.3-3.11
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -185,6 +363,9 @@ install -m 644 -p %{SOURCE3} %{buildroot}%{_sysconfdir}/xdg/xmvn/configuration.x
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-16
+- Obsolete packages removed in RHSCL 2.0
+
 * Tue Jan 13 2015 Michael Simacek <msimacek@redhat.com> - 1.1-15
 - Mass rebuild 2015-01-13
 
