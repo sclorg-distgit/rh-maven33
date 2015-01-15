@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    20%{?dist}
+Release:    21%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -297,6 +297,9 @@ Summary:    Package shipping development files for %scl
 Requires:   %{scl_java_common}-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
 Requires:   %{scl_java_common}-scldevel
+# XXX temp provides for thermostat1, ask Severin before removing
+Provides: maven30-javapackages-tools
+Provides: maven30-maven-local
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -450,6 +453,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Jan 15 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-21
+- Add temp provides to fix Thermostat bulid
+
 * Thu Jan 15 2015 Michal Srb <msrb@redhat.com> - 1.1-20
 - Own %%{_javaconfdir}
 
