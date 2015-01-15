@@ -297,9 +297,6 @@ Summary:    Package shipping development files for %scl
 Requires:   %{scl_java_common}-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
 Requires:   %{scl_java_common}-scldevel
-# XXX temp provides for thermostat1, ask Severin before removing
-Provides: maven30-javapackages-tools
-Provides: maven30-maven-local
 
 %description scldevel
 Package shipping development files, especially useful for development of
