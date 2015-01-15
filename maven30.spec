@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    19%{?dist}
+Release:    20%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -433,7 +433,7 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_prefix}/lib/python2.*
 %{_prefix}/lib/rpm
 %{_mandir}/man7/%{scl_name}.*
-%{_javaconfdir}/*
+%{_javaconfdir}/
 %dir %{_jnidir}
 %dir %{_javadir}
 %dir %{_javadocdir}
@@ -450,6 +450,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Jan 15 2015 Michal Srb <msrb@redhat.com> - 1.1-20
+- Own %%{_javaconfdir}
+
 * Wed Jan 14 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-19
 - Revert adding directory ownership
 
