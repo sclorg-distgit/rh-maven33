@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    21%{?dist}
+Release:    22%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -453,6 +453,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Jan 15 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-22
+- Remove temp provides
+
 * Thu Jan 15 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-21
 - Add temp provides to fix Thermostat bulid
 
