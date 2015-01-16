@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    22%{?dist}
+Release:    23%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -268,6 +268,9 @@ Obsoletes:  %{scl_name}-xbean-javadoc < 3.13-6.10
 Obsoletes:  %{scl_name}-xerces-j2 < 2.11.0-17.6
 Obsoletes:  %{scl_name}-xerces-j2-demo < 2.11.0-17.6
 Obsoletes:  %{scl_name}-xerces-j2-javadoc < 2.11.0-17.6
+Obsoletes:  %{scl_name}-xml-commons-apis < 1.4.01-16.14
+Obsoletes:  %{scl_name}-xml-commons-apis-javadoc < 1.4.01-16.14
+Obsoletes:  %{scl_name}-xml-commons-apis-manual < 1.4.01-16.14
 Obsoletes:  %{scl_name}-xml-commons-resolver < 1.2-15.12
 Obsoletes:  %{scl_name}-xml-commons-resolver-javadoc < 1.2-15.12
 Obsoletes:  %{scl_name}-xmlrpc-client < 1:3.1.3-8.12
@@ -450,6 +453,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Fri Jan 16 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-23
+- Obsolete xml-commons-apis
+
 * Thu Jan 15 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-22
 - Remove temp provides
 
