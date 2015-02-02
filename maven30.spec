@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    23%{?dist}
+Release:    24%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -315,12 +315,12 @@ cat <<EOF >enable
 
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
-export MANPATH="%{_mandir}:\${MANPATH}"
+export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
-export JAVACONFDIRS="%{_sysconfdir}/java:\$JAVACONFDIRS"
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\$XDG_CONFIG_DIRS"
-export XDG_DATA_DIRS="%{_datadir}:\$XDG_DATA_DIRS"
+export JAVACONFDIRS="%{_sysconfdir}/java\${JAVACONFDIRS:+:}\${JAVACONFDIRS:-}"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg\${XDG_CONFIG_DIRS:+:}\${XDG_CONFIG_DIRS:-}"
+export XDG_DATA_DIRS="%{_datadir}\${XDG_DATA_DIRS:+:}\${XDG_DATA_DIRS:-}"
 EOF
 
 # Generate Eclipse configuration file
@@ -453,6 +453,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Mon Feb  2 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-24
+- Be more careful when setting env variables in enable script
+
 * Fri Jan 16 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-23
 - Obsolete xml-commons-apis
 
