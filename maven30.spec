@@ -7,8 +7,9 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    24%{?dist}
+Release:    25%{?dist}
 Summary:    Package that installs %scl
+BuildArch:  noarch
 
 License:    GPLv2+
 #URL:         
@@ -31,6 +32,8 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+# For arch to noarch conversion
+Obsoletes:  %{scl_name}-runtime < 1.1-25
 # Obsolete packages which were shipped in RHSCL 1.2, but removed in RHSCL 2.0
 Obsoletes:  %{scl_name}-ant < 1.9.2-9.21
 Obsoletes:  %{scl_name}-ant-antlr < 1.9.2-9.21
@@ -290,6 +293,8 @@ Package shipping essential scripts to work with the %scl Software Collection.
 Summary:    Build support tools for the %scl Software Collection.
 Requires:   scl-utils-build
 Requires:   %{name}-scldevel = %{version}-%{release}
+# For arch to noarch conversion
+Obsoletes:  %{scl_name}-build < 1.1-25
 
 %description build
 Package shipping essential configuration marcros/files in order to be able
@@ -300,6 +305,8 @@ Summary:    Package shipping development files for %scl
 Requires:   %{scl_java_common}-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
 Requires:   %{scl_java_common}-scldevel
+# For arch to noarch conversion
+Obsoletes:  %{scl_name}-scldevel < 1.1-25
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -453,6 +460,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jun  9 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-25
+- Convert to noarch
+
 * Mon Feb  2 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-24
 - Be more careful when setting env variables in enable script
 
