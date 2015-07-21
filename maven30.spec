@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    26%{?dist}
+Release:    27%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -389,6 +389,8 @@ chmod a+x h2m_helper
 
 # generate the man page
 help2man -N --section 7 ./h2m_helper -o %{scl_name}.7
+# Fix single quotes in man page.
+sed -i "s/'/\\\\(aq/g" %{scl_name}.7
 
 %install
 # Parentheses are needed here as workaround for rhbz#1017085
@@ -453,6 +455,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jul 21 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-27
+- Fix syntax errors in manpage
+
 * Wed Jun 10 2015 Michal Srb <msrb@redhat.com> - 1.1-26
 - Convert back to arch
 
