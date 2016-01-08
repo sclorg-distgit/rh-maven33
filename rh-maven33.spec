@@ -20,6 +20,8 @@ Source5:    LICENSE
 
 BuildRequires:  help2man
 BuildRequires:  scl-utils-build
+# XXX remove
+BuildRequires:  jpackage-utils
 
 Requires:         %{name}-runtime = %{version}-%{release}
 Requires:         %{scl_name}-maven
@@ -46,9 +48,11 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-Requires:   %{?scl_java_common}-maven-local
+# XXX use macro
+Requires:   rh-java-common-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{?scl_java_common}-scldevel
+# XXX use macro
+Requires:   rh-java-common-scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -60,7 +64,8 @@ packages depending on %scl Software Collection.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
-. /opt/rh/%{scl_java_common}/enable
+# XXX use macro
+. /opt/rh/rh-java-common/enable
 
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
