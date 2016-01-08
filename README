@@ -1,8 +1,8 @@
-The %{scl_name} package provides Apache Maven 3.0.5 with a set of Maven
+The %{scl_name} package provides Apache Maven 3.3.9 with a set of Maven
 plugins delivered as a Software Collection. For more information
 about Software Collections, see the scl(1) man page.
 
-Installing the %{scl_name} Software Collection gets you Maven 3.0.5
+Installing the %{scl_name} Software Collection gets you Maven 3.3.9
 with all required dependencies, including the Java Development Kit.
 
 Usage: scl enable %{scl} 'mvn'

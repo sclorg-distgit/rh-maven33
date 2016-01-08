@@ -1,7 +1,7 @@
 {
     "maven.req": {
         "always_generate": [
-            "maven30-runtime"
+            "rh-maven33-runtime"
         ],
         "java_requires": {
             "package_name": "java",
@@ -16,7 +16,7 @@
     },
     "javadoc.req": {
         "always_generate": [
-            "maven30-runtime"
+            "rh-maven33-runtime"
         ]
     }
 }
