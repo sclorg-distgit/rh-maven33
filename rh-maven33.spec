@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -367,7 +367,8 @@ cat <<EOF >enable
 . /opt/rh/rh-java-common/enable
 
 # Generic variables
-export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
+# XXX remove maven30 from PATH
+export PATH="/opt/rh/maven30/root/usr/bin:%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
@@ -508,6 +509,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
+- Temporarly add maven30 to PATH
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1-2
 - Temporarily require all maven33 packages
 
