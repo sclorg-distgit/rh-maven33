@@ -37,6 +37,18 @@ Requires:   java-1.7.0-openjdk-devel
 Provides:   rh-maven33-sisu-inject-bean
 Provides:   rh-maven33-sisu-inject-plexus
 Provides:   rh-maven33-mvn(org.sonatype.sisu:sisu-inject-plexus)
+Provides:   rh-maven33-aether-api
+Provides:   rh-maven33-aether-connector-file
+Provides:   rh-maven33-aether-connector-wagon
+Provides:   rh-maven33-aether-impl
+Provides:   rh-maven33-aether-spi
+Provides:   rh-maven33-aether-test-util
+Provides:   rh-maven33-aether-util
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-api)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-connector-wagon)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-impl)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-spi)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-util)
 # XXX remove
 Requires:   rh-maven33
 Requires:   rh-maven33-ant-antunit
