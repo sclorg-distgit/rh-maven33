@@ -33,6 +33,10 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+# XXX fake provides - remove
+Provides:   rh-maven33-sisu-inject-bean
+Provides:   rh-maven33-sisu-inject-plexus
+Provides:   rh-maven33-mvn(org.sonatype.sisu:sisu-inject-plexus)
 # XXX remove
 Requires:   rh-maven33
 Requires:   rh-maven33-ant-antunit
