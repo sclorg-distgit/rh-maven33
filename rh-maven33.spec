@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    6%{?dist}
+Release:    7%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -31,22 +31,6 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
-# XXX fake provides - remove
-Provides:   rh-maven33-sisu-inject-bean
-Provides:   rh-maven33-sisu-inject-plexus
-Provides:   rh-maven33-mvn(org.sonatype.sisu:sisu-inject-plexus)
-#Provides:   rh-maven33-aether-api
-#Provides:   rh-maven33-aether-connector-file
-Provides:   rh-maven33-aether-connector-wagon
-#Provides:   rh-maven33-aether-impl
-#Provides:   rh-maven33-aether-spi
-#Provides:   rh-maven33-aether-test-util
-#Provides:   rh-maven33-aether-util
-Provides:   rh-maven33-mvn(org.sonatype.aether:aether-api)
-Provides:   rh-maven33-mvn(org.sonatype.aether:aether-connector-wagon)
-Provides:   rh-maven33-mvn(org.sonatype.aether:aether-impl)
-Provides:   rh-maven33-mvn(org.sonatype.aether:aether-spi)
-Provides:   rh-maven33-mvn(org.sonatype.aether:aether-util)
 # XXX remove
 Requires:   rh-maven33
 Requires:   rh-maven33-ant-antunit
@@ -266,12 +250,9 @@ Requires:   rh-maven33-maven-wagon-ftp
 Requires:   rh-maven33-maven-wagon-http
 Requires:   rh-maven33-maven-wagon-http-lightweight
 Requires:   rh-maven33-maven-wagon-http-shared
-Requires:   rh-maven33-maven-wagon-http-shared4
 Requires:   rh-maven33-maven-wagon-provider-api
 Requires:   rh-maven33-maven-wagon-providers
-Requires:   rh-maven33-maven-wagon-provider-test
 Requires:   rh-maven33-maven-wagon-scm
-Requires:   rh-maven33-maven-wagon-ssh
 Requires:   rh-maven33-maven-wagon-ssh-common
 Requires:   rh-maven33-maven-wagon-ssh-external
 Requires:   rh-maven33-maven-war-plugin
@@ -519,6 +500,10 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-7
+- Remove fake sonatype provides
+- Partially remove maven-wagon requires
+
 * Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-6
 - Fix R on rh-java-common packages
 
