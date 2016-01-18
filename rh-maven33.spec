@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    5%{?dist}
+Release:    6%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -361,9 +361,9 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-Requires:   %{?scl_java_common}maven-local
+Requires:   %{?scl_prefix_java_common}maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{?scl_java_common}scldevel
+Requires:   %{?scl_prefix_java_common}scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -519,6 +519,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-6
+- Fix R on rh-java-common packages
+
 * Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-5
 - Remove maven30 from PATH
 
