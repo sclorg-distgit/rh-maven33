@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -378,8 +378,7 @@ cat <<EOF >enable
 . /opt/rh/%{scl_java_common}/enable
 
 # Generic variables
-# XXX remove maven30 from PATH
-export PATH="/opt/rh/maven30/root/usr/bin:%{_bindir}:\${PATH:-/bin:/usr/bin}"
+export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
@@ -520,6 +519,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-5
+- Remove maven30 from PATH
+
 * Thu Jan 14 2016 Michal Srb <msrb@redhat.com> - 1-4
 - Reduce number of fake provides
 
