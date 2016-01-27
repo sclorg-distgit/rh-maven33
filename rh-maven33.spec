@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    9%{?dist}
+Release:    10%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -52,7 +52,7 @@ to build %scl Software Collection.
 Summary:    Package shipping development files for %scl
 Requires:   %{name}-maven-local = %{version}-%{release}
 Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{?scl_prefix_java_common}scldevel
+Requires:   %{?scl_prefix_java_common}scldevel-common
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -277,6 +277,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1-10
+- Get rid of transitive maven30 dependency
+
 * Tue Jan 26 2016 Michal Srb <msrb@redhat.com> - 1-9
 - Fix R on javapackages-tools
 
