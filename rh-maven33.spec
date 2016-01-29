@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    10%{?dist}
+Release:    11%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -277,6 +277,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-11
+- Rebuild
+
 * Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1-10
 - Get rid of transitive maven30 dependency
 
