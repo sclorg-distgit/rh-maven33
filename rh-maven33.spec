@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    11%{?dist}
+Release:    12%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -137,8 +137,8 @@ export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
 export JAVACONFDIRS="%{_sysconfdir}/java\${JAVACONFDIRS:+:}\${JAVACONFDIRS:-}"
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg\${XDG_CONFIG_DIRS:+:}\${XDG_CONFIG_DIRS:-}"
-export XDG_DATA_DIRS="%{_datadir}\${XDG_DATA_DIRS:+:}\${XDG_DATA_DIRS:-}"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 EOF
 
 # Generate Eclipse configuration file
@@ -277,6 +277,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-12
+- Correctly handle XDG env. variables in enable script (Resolves: rhbz#1300623)
+
 * Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-11
 - Rebuild
 
