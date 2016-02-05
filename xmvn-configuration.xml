@@ -13,6 +13,19 @@
   </installerSettings>
   <repositories>
     <repository>
+      <id>resolve-rh-maven33</id>
+      <type>compound</type>
+      <properties>
+        <prefix>opt/rh/rh-maven33/root</prefix>
+        <namespace>rh-maven33</namespace>
+      </properties>
+      <configuration>
+        <repositories>
+          <repository>base-resolve</repository>
+        </repositories>
+      </configuration>
+    </repository>
+    <repository>
       <id>install</id>
       <type>compound</type>
       <properties>
@@ -22,6 +35,16 @@
       <configuration>
         <repositories>
           <repository>base-install</repository>
+        </repositories>
+      </configuration>
+    </repository>
+    <repository>
+      <id>resolve</id>
+      <type>compound</type>
+      <configuration>
+        <repositories>
+          <repository>resolve-java-common</repository>
+          <repository>resolve-rh-maven33</repository>
         </repositories>
       </configuration>
     </repository>
