@@ -43,6 +43,7 @@
       <type>compound</type>
       <configuration>
         <repositories>
+          <repository>resolve-local</repository>
           <repository>resolve-java-common</repository>
           <repository>resolve-rh-maven33</repository>
         </repositories>
