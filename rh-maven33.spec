@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    1%{?dist}
+Release:    15%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -20,8 +20,6 @@ Source5:    LICENSE
 
 BuildRequires:  help2man
 BuildRequires:  scl-utils-build
-# XXX remove
-BuildRequires:  jpackage-utils
 
 Requires:         %{name}-runtime = %{version}-%{release}
 Requires:         %{scl_name}-maven
@@ -33,6 +31,10 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+# XXX remove when BRs are fixed in all rh-maven33 packages
+Requires:   %{name}-maven-local = %{version}-%{release}
+Requires:   %{name}-ivy-local = %{version}-%{release}
+Requires:   %{name}-javapackages-local = %{version}-%{release}
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -48,15 +50,78 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-# XXX use macro
-Requires:   rh-java-common-maven-local
+Requires:   %{name}-maven-local = %{version}-%{release}
 Requires:   %{name}-runtime = %{version}-%{release}
-# XXX use macro
-Requires:   rh-java-common-scldevel
+Requires:   %{?scl_prefix_java_common}scldevel-common
 
 %description scldevel
 Package shipping development files, especially useful for development of
 packages depending on %scl Software Collection.
+
+# javapackages-tools counterparts for rh-maven33 collection
+%package maven-local
+Summary:        Support for Maven packaging
+Requires:       %{?scl_prefix_java_common}javapackages-tools
+Requires:       %{name}-javapackages-local = %{version}-%{release}
+Requires:       %{?scl_prefix}maven
+Requires:       %{?scl_prefix}xmvn >= 2
+Requires:       %{?scl_prefix}xmvn-mojo >= 2
+Requires:       %{?scl_prefix}xmvn-connector-aether >= 2
+# POM files needed by maven itself
+Requires:       %{?scl_prefix}apache-commons-parent
+Requires:       %{?scl_prefix}apache-parent
+Requires:       %{?scl_prefix}geronimo-parent-poms
+Requires:       %{?scl_prefix}httpcomponents-project
+Requires:       %{?scl_prefix}jboss-parent
+Requires:       %{?scl_prefix}jvnet-parent
+Requires:       %{?scl_prefix}maven-parent
+Requires:       %{?scl_prefix}maven-plugins-pom
+Requires:       %{?scl_prefix}mojo-parent
+Requires:       %{?scl_prefix}plexus-components-pom
+Requires:       %{?scl_prefix}plexus-pom
+Requires:       %{?scl_prefix}plexus-tools-pom
+Requires:       %{?scl_prefix}sonatype-oss-parent
+Requires:       %{?scl_prefix}weld-parent
+# Common Maven plugins required by almost every build. It wouldn't make
+# sense to explicitly require them in every package built with Maven.
+Requires:       %{?scl_prefix}maven-assembly-plugin
+Requires:       %{?scl_prefix}maven-compiler-plugin
+Requires:       %{?scl_prefix}maven-enforcer-plugin
+Requires:       %{?scl_prefix}maven-jar-plugin
+Requires:       %{?scl_prefix}maven-javadoc-plugin
+Requires:       %{?scl_prefix}maven-resources-plugin
+Requires:       %{?scl_prefix}maven-surefire-plugin
+# Tests based on JUnit are very common and JUnit itself is small.
+# Include JUnit provider for Surefire just for convenience.
+Requires:       %{?scl_prefix}maven-surefire-provider-junit
+# testng is quite common as well
+Requires:       %{?scl_prefix}maven-surefire-provider-testng
+Requires:       %{?scl_prefix_java_common}maven-local-support
+
+%description maven-local
+This package provides tools to support packaging Maven artifacts.
+
+%package ivy-local
+Summary:        Support for Apache Ivy packaging
+Requires:       %{?scl_prefix_java_common}javapackages-tools
+Requires:       %{name}-javapackages-local = %{version}-%{release}
+Requires:       %{?scl_prefix}apache-ivy
+Requires:       %{?scl_prefix}xmvn-connector-ivy >= 2
+Requires:       %{?scl_prefix_java_common}ivy-local-support
+
+%description ivy-local
+This package provides tools to support Apache Ivy packaging.
+
+%package javapackages-local
+Summary:        Non-essential tools for Java packaging
+Requires:       %{?scl_prefix_java_common}javapackages-tools
+Requires:       %{?scl_prefix}xmvn-install >= 2
+Requires:       %{?scl_prefix}xmvn-subst >= 2
+Requires:       %{?scl_prefix}xmvn-resolve >= 2
+Requires:       %{?scl_prefix_java_common}javapackages-local-support
+
+%description javapackages-local
+This package provides non-essential tools for Java packaging.
 
 %prep
 %setup -c -T
@@ -64,8 +129,7 @@ packages depending on %scl Software Collection.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
-# XXX use macro
-. /opt/rh/rh-java-common/enable
+. /opt/rh/%{scl_java_common}/enable
 
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
@@ -73,8 +137,8 @@ export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
 export JAVACONFDIRS="%{_sysconfdir}/java\${JAVACONFDIRS:+:}\${JAVACONFDIRS:-}"
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg\${XDG_CONFIG_DIRS:+:}\${XDG_CONFIG_DIRS:-}"
-export XDG_DATA_DIRS="%{_datadir}\${XDG_DATA_DIRS:+:}\${XDG_DATA_DIRS:-}"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 EOF
 
 # Generate Eclipse configuration file
@@ -208,7 +272,56 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files scldevel
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
+%files maven-local
+%files ivy-local
+%files javapackages-local
+
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-15
+- Fix macros.rh-maven33
+- Revert temporary changes in xmvn config
+
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-14
+- Resolve from local repository first
+
+* Fri Feb 05 2016 Michal Srb <msrb@redhat.com> - 1-13
+- Temporarily resolve from rh-java-common first
+
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-12
+- Correctly handle XDG env. variables in enable script (Resolves: rhbz#1300623)
+
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-11
+- Rebuild
+
+* Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1-10
+- Get rid of transitive maven30 dependency
+
+* Tue Jan 26 2016 Michal Srb <msrb@redhat.com> - 1-9
+- Fix R on javapackages-tools
+
+* Tue Jan 19 2016 Michal Srb <msrb@redhat.com> - 1-8
+- Introduce maven33-specific "local" subpackages
+- Drop temp requires
+
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-7
+- Remove fake sonatype provides
+- Partially remove maven-wagon requires
+
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-6
+- Fix R on rh-java-common packages
+
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-5
+- Remove maven30 from PATH
+
+* Thu Jan 14 2016 Michal Srb <msrb@redhat.com> - 1-4
+- Reduce number of fake provides
+
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
+- Temporarly add maven30 to PATH
+
+* Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1-2
+- Temporarily require all maven33 packages
+
 * Fri Jan 08 2016 Michal Srb <msrb@redhat.com> 1-1
 - Alter for rh-maven33
 

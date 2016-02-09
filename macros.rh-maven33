@@ -1,5 +1,5 @@
-%scl_maven maven30
-%scl_prefix_maven maven30-
+%scl_maven rh-maven33
+%scl_prefix_maven rh-maven33-
 
 # macro to invoke the javapackages provides and requires generators on el6
 %maven_find_provides_and_requires %{java_common_find_provides_and_requires}
