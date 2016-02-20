@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    15%{?dist}
+Release:    2%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -20,6 +20,8 @@ Source5:    LICENSE
 
 BuildRequires:  help2man
 BuildRequires:  scl-utils-build
+# XXX remove
+BuildRequires:  jpackage-utils
 
 Requires:         %{name}-runtime = %{version}-%{release}
 Requires:         %{scl_name}-maven
@@ -31,10 +33,339 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
-# XXX remove when BRs are fixed in all rh-maven33 packages
-Requires:   %{name}-maven-local = %{version}-%{release}
-Requires:   %{name}-ivy-local = %{version}-%{release}
-Requires:   %{name}-javapackages-local = %{version}-%{release}
+# XXX remove
+Requires:   rh-maven33
+Requires:   rh-maven33-aether
+Requires:   rh-maven33-aether-api
+Requires:   rh-maven33-aether-connector-file
+Requires:   rh-maven33-aether-connector-wagon
+Requires:   rh-maven33-aether-impl
+Requires:   rh-maven33-aether-spi
+Requires:   rh-maven33-aether-test-util
+Requires:   rh-maven33-aether-util
+Requires:   rh-maven33-ant-antunit
+Requires:   rh-maven33-ant-contrib
+Requires:   rh-maven33-aopalliance
+Requires:   rh-maven33-apache-commons-configuration
+Requires:   rh-maven33-apache-commons-daemon
+Requires:   rh-maven33-apache-commons-daemon-jsvc
+Requires:   rh-maven33-apache-commons-digester
+Requires:   rh-maven33-apache-commons-exec
+Requires:   rh-maven33-apache-commons-jexl
+Requires:   rh-maven33-apache-commons-jxpath
+Requires:   rh-maven33-apache-commons-lang3
+Requires:   rh-maven33-apache-commons-parent
+Requires:   rh-maven33-apache-commons-validator
+Requires:   rh-maven33-apache-commons-vfs
+Requires:   rh-maven33-apache-commons-vfs-ant
+Requires:   rh-maven33-apache-commons-vfs-examples
+Requires:   rh-maven33-apache-ivy
+Requires:   rh-maven33-apache-parent
+Requires:   rh-maven33-apache-rat
+Requires:   rh-maven33-apache-rat-core
+Requires:   rh-maven33-apache-rat-plugin
+Requires:   rh-maven33-apache-rat-tasks
+Requires:   rh-maven33-apache-resource-bundles
+Requires:   rh-maven33-aqute-bnd
+Requires:   rh-maven33-aqute-bndlib
+Requires:   rh-maven33-avalon-framework
+Requires:   rh-maven33-avalon-logkit
+Requires:   rh-maven33-base64coder
+Requires:   rh-maven33-beust-jcommander
+Requires:   rh-maven33-bsh
+Requires:   rh-maven33-bsh-utils
+Requires:   rh-maven33-build
+Requires:   rh-maven33-buildnumber-maven-plugin
+Requires:   rh-maven33-cal10n
+Requires:   rh-maven33-cdi-api
+Requires:   rh-maven33-cglib
+Requires:   rh-maven33-cobertura
+Requires:   rh-maven33-codehaus-parent
+Requires:   rh-maven33-codemodel
+Requires:   rh-maven33-color-filesystem
+Requires:   rh-maven33-exec-maven-plugin
+Requires:   rh-maven33-felix-bundlerepository
+Requires:   rh-maven33-felix-osgi-compendium
+Requires:   rh-maven33-felix-osgi-core
+Requires:   rh-maven33-felix-osgi-foundation
+Requires:   rh-maven33-felix-osgi-obr
+Requires:   rh-maven33-felix-parent
+Requires:   rh-maven33-felix-shell
+Requires:   rh-maven33-felix-utils
+Requires:   rh-maven33-fop
+Requires:   rh-maven33-forge-parent
+Requires:   rh-maven33-fusesource-pom
+Requires:   rh-maven33-geronimo-jaxrpc
+Requires:   rh-maven33-geronimo-jms
+Requires:   rh-maven33-geronimo-osgi-support
+Requires:   rh-maven33-geronimo-parent-poms
+Requires:   rh-maven33-geronimo-saaj
+Requires:   rh-maven33-gnu-getopt
+Requires:   rh-maven33-google-guice
+Requires:   rh-maven33-groovy
+Requires:   rh-maven33-guice-parent
+Requires:   rh-maven33-httpcomponents-client
+Requires:   rh-maven33-httpcomponents-core
+Requires:   rh-maven33-httpcomponents-project
+Requires:   rh-maven33-httpunit
+Requires:   rh-maven33-httpunit-doc
+Requires:   rh-maven33-icc-profiles-openicc
+Requires:   rh-maven33-istack-commons
+Requires:   rh-maven33-istack-commons-maven-plugin
+Requires:   rh-maven33-javacc
+Requires:   rh-maven33-javacc-maven-plugin
+Requires:   rh-maven33-javassist
+Requires:   rh-maven33-jboss-ejb-3.1-api
+Requires:   rh-maven33-jboss-el-2.2-api
+Requires:   rh-maven33-jboss-interceptors-1.1-api
+Requires:   rh-maven33-jboss-jaxrpc-1.1-api
+Requires:   rh-maven33-jboss-parent
+Requires:   rh-maven33-jboss-servlet-3.0-api
+Requires:   rh-maven33-jboss-specs-parent
+Requires:   rh-maven33-jboss-transaction-1.1-api
+Requires:   rh-maven33-jdependency
+Requires:   rh-maven33-jettison
+Requires:   rh-maven33-jetty-artifact-remote-resources
+Requires:   rh-maven33-jetty-assembly-descriptors
+Requires:   rh-maven33-jetty-build-support
+Requires:   rh-maven33-jetty-distribution-remote-resources
+Requires:   rh-maven33-jetty-parent
+Requires:   rh-maven33-jetty-test-policy
+Requires:   rh-maven33-jetty-toolchain
+Requires:   rh-maven33-jetty-version-maven-plugin
+Requires:   rh-maven33-jflex
+Requires:   rh-maven33-jline
+Requires:   rh-maven33-jna
+Requires:   rh-maven33-jna-contrib
+Requires:   rh-maven33-joda-convert
+Requires:   rh-maven33-joda-time
+Requires:   rh-maven33-jsr-305
+Requires:   rh-maven33-jtidy
+Requires:   rh-maven33-jvnet-parent
+Requires:   rh-maven33-keytool-maven-plugin
+Requires:   rh-maven33-kxml
+Requires:   rh-maven33-maven
+Requires:   rh-maven33-maven-antrun-plugin
+Requires:   rh-maven33-maven-archiver
+Requires:   rh-maven33-maven-artifact
+Requires:   rh-maven33-maven-artifact-manager
+Requires:   rh-maven33-maven-artifact-resolver
+Requires:   rh-maven33-maven-assembly-plugin
+Requires:   rh-maven33-maven-cal10n-plugin
+Requires:   rh-maven33-maven-changes-plugin
+Requires:   rh-maven33-maven-clean-plugin
+Requires:   rh-maven33-maven-common-artifact-filters
+Requires:   rh-maven33-maven-compiler-plugin
+Requires:   rh-maven33-maven-dependency-analyzer
+Requires:   rh-maven33-maven-dependency-plugin
+Requires:   rh-maven33-maven-dependency-tree
+Requires:   rh-maven33-maven-deploy-plugin
+Requires:   rh-maven33-maven-downloader
+Requires:   rh-maven33-maven-doxia
+Requires:   rh-maven33-maven-doxia-core
+Requires:   rh-maven33-maven-doxia-logging-api
+Requires:   rh-maven33-maven-doxia-module-apt
+Requires:   rh-maven33-maven-doxia-module-confluence
+Requires:   rh-maven33-maven-doxia-module-docbook-simple
+Requires:   rh-maven33-maven-doxia-module-fml
+Requires:   rh-maven33-maven-doxia-module-fo
+Requires:   rh-maven33-maven-doxia-module-latex
+Requires:   rh-maven33-maven-doxia-module-rtf
+Requires:   rh-maven33-maven-doxia-modules
+Requires:   rh-maven33-maven-doxia-module-twiki
+Requires:   rh-maven33-maven-doxia-module-xdoc
+Requires:   rh-maven33-maven-doxia-module-xhtml
+Requires:   rh-maven33-maven-doxia-sink-api
+Requires:   rh-maven33-maven-doxia-sitetools
+Requires:   rh-maven33-maven-doxia-test-docs
+Requires:   rh-maven33-maven-doxia-tests
+Requires:   rh-maven33-maven-doxia-tools
+Requires:   rh-maven33-maven-enforcer
+Requires:   rh-maven33-maven-enforcer-api
+Requires:   rh-maven33-maven-enforcer-plugin
+Requires:   rh-maven33-maven-enforcer-rules
+Requires:   rh-maven33-maven-error-diagnostics
+Requires:   rh-maven33-maven-failsafe-plugin
+Requires:   rh-maven33-maven-file-management
+Requires:   rh-maven33-maven-filtering
+Requires:   rh-maven33-maven-gpg-plugin
+Requires:   rh-maven33-maven-install-plugin
+Requires:   rh-maven33-maven-invoker
+Requires:   rh-maven33-maven-invoker-plugin
+Requires:   rh-maven33-maven-jar-plugin
+Requires:   rh-maven33-maven-jarsigner-plugin
+Requires:   rh-maven33-maven-jxr
+Requires:   rh-maven33-maven-model
+Requires:   rh-maven33-maven-monitor
+Requires:   rh-maven33-maven-osgi
+Requires:   rh-maven33-maven-parent
+Requires:   rh-maven33-maven-plugin-annotations
+Requires:   rh-maven33-maven-plugin-build-helper
+Requires:   rh-maven33-maven-plugin-bundle
+Requires:   rh-maven33-maven-plugin-descriptor
+Requires:   rh-maven33-maven-plugin-jxr
+Requires:   rh-maven33-maven-plugin-plugin
+Requires:   rh-maven33-maven-plugin-registry
+Requires:   rh-maven33-maven-plugins-pom
+Requires:   rh-maven33-maven-plugin-testing
+Requires:   rh-maven33-maven-plugin-testing-harness
+Requires:   rh-maven33-maven-plugin-testing-tools
+Requires:   rh-maven33-maven-plugin-tools
+Requires:   rh-maven33-maven-plugin-tools-annotations
+Requires:   rh-maven33-maven-plugin-tools-ant
+Requires:   rh-maven33-maven-plugin-tools-api
+Requires:   rh-maven33-maven-plugin-tools-beanshell
+Requires:   rh-maven33-maven-plugin-tools-generators
+Requires:   rh-maven33-maven-plugin-tools-java
+Requires:   rh-maven33-maven-plugin-tools-model
+Requires:   rh-maven33-maven-profile
+Requires:   rh-maven33-maven-project
+Requires:   rh-maven33-maven-project-info-reports-plugin
+Requires:   rh-maven33-maven-release
+Requires:   rh-maven33-maven-release-manager
+Requires:   rh-maven33-maven-release-plugin
+Requires:   rh-maven33-maven-remote-resources-plugin
+Requires:   rh-maven33-maven-reporting-api
+Requires:   rh-maven33-maven-reporting-exec
+Requires:   rh-maven33-maven-reporting-impl
+Requires:   rh-maven33-maven-repository-builder
+Requires:   rh-maven33-maven-resources-plugin
+Requires:   rh-maven33-maven-scm
+Requires:   rh-maven33-maven-scm-test
+Requires:   rh-maven33-maven-script
+Requires:   rh-maven33-maven-script-ant
+Requires:   rh-maven33-maven-script-beanshell
+Requires:   rh-maven33-maven-script-interpreter
+Requires:   rh-maven33-maven-settings
+Requires:   rh-maven33-maven-shade-plugin
+Requires:   rh-maven33-maven-shared
+Requires:   rh-maven33-maven-shared-incremental
+Requires:   rh-maven33-maven-shared-io
+Requires:   rh-maven33-maven-shared-jar
+Requires:   rh-maven33-maven-shared-utils
+Requires:   rh-maven33-maven-site-plugin
+Requires:   rh-maven33-maven-source-plugin
+Requires:   rh-maven33-maven-surefire
+Requires:   rh-maven33-maven-surefire-plugin
+Requires:   rh-maven33-maven-surefire-provider-junit
+Requires:   rh-maven33-maven-surefire-provider-testng
+Requires:   rh-maven33-maven-surefire-report-parser
+Requires:   rh-maven33-maven-surefire-report-plugin
+Requires:   rh-maven33-maven-test-tools
+Requires:   rh-maven33-maven-toolchain
+Requires:   rh-maven33-maven-verifier
+Requires:   rh-maven33-maven-wagon
+Requires:   rh-maven33-maven-wagon-file
+Requires:   rh-maven33-maven-wagon-ftp
+Requires:   rh-maven33-maven-wagon-http
+Requires:   rh-maven33-maven-wagon-http-lightweight
+Requires:   rh-maven33-maven-wagon-http-shared
+Requires:   rh-maven33-maven-wagon-http-shared4
+Requires:   rh-maven33-maven-wagon-provider-api
+Requires:   rh-maven33-maven-wagon-providers
+Requires:   rh-maven33-maven-wagon-provider-test
+Requires:   rh-maven33-maven-wagon-scm
+Requires:   rh-maven33-maven-wagon-ssh
+Requires:   rh-maven33-maven-wagon-ssh-common
+Requires:   rh-maven33-maven-wagon-ssh-external
+Requires:   rh-maven33-maven-war-plugin
+Requires:   rh-maven33-modello
+Requires:   rh-maven33-mojo-parent
+Requires:   rh-maven33-munge-maven-plugin
+Requires:   rh-maven33-objectweb-anttask
+Requires:   rh-maven33-plexus-ant-factory
+Requires:   rh-maven33-plexus-archiver
+Requires:   rh-maven33-plexus-bsh-factory
+Requires:   rh-maven33-plexus-build-api
+Requires:   rh-maven33-plexus-cdc
+Requires:   rh-maven33-plexus-cipher
+Requires:   rh-maven33-plexus-classworlds
+Requires:   rh-maven33-plexus-cli
+Requires:   rh-maven33-plexus-compiler
+Requires:   rh-maven33-plexus-compiler-extras
+Requires:   rh-maven33-plexus-compiler-pom
+Requires:   rh-maven33-plexus-component-api
+Requires:   rh-maven33-plexus-component-factories-pom
+Requires:   rh-maven33-plexus-components-pom
+Requires:   rh-maven33-plexus-containers
+Requires:   rh-maven33-plexus-containers-component-annotations
+Requires:   rh-maven33-plexus-containers-component-metadata
+Requires:   rh-maven33-plexus-containers-container-default
+Requires:   rh-maven33-plexus-digest
+Requires:   rh-maven33-plexus-i18n
+Requires:   rh-maven33-plexus-interactivity
+Requires:   rh-maven33-plexus-interactivity-api
+Requires:   rh-maven33-plexus-interactivity-jline
+Requires:   rh-maven33-plexus-interpolation
+Requires:   rh-maven33-plexus-io
+Requires:   rh-maven33-plexus-mail-sender
+Requires:   rh-maven33-plexus-pom
+Requires:   rh-maven33-plexus-resources
+Requires:   rh-maven33-plexus-sec-dispatcher
+Requires:   rh-maven33-plexus-tools-pom
+Requires:   rh-maven33-plexus-utils
+Requires:   rh-maven33-plexus-velocity
+Requires:   rh-maven33-runtime
+Requires:   rh-maven33-sac
+Requires:   rh-maven33-saxon
+Requires:   rh-maven33-saxon-scripts
+Requires:   rh-maven33-scldevel
+Requires:   rh-maven33-sisu
+Requires:   rh-maven33-sisu-bean
+Requires:   rh-maven33-sisu-bean-binders
+Requires:   rh-maven33-sisu-bean-containers
+Requires:   rh-maven33-sisu-bean-converters
+Requires:   rh-maven33-sisu-bean-inject
+Requires:   rh-maven33-sisu-bean-locators
+Requires:   rh-maven33-sisu-bean-reflect
+Requires:   rh-maven33-sisu-bean-scanners
+Requires:   rh-maven33-sisu-containers
+Requires:   rh-maven33-sisu-inject
+Requires:   rh-maven33-sisu-inject-bean
+Requires:   rh-maven33-sisu-inject-plexus
+Requires:   rh-maven33-sisu-maven-plugin
+Requires:   rh-maven33-sisu-osgi-registry
+Requires:   rh-maven33-sisu-parent
+Requires:   rh-maven33-sisu-plexus
+Requires:   rh-maven33-sisu-plexus-binders
+Requires:   rh-maven33-sisu-plexus-converters
+Requires:   rh-maven33-sisu-plexus-lifecycles
+Requires:   rh-maven33-sisu-plexus-locators
+Requires:   rh-maven33-sisu-plexus-metadata
+Requires:   rh-maven33-sisu-plexus-scanners
+Requires:   rh-maven33-sisu-plexus-shim
+Requires:   rh-maven33-sisu-registries
+Requires:   rh-maven33-sisu-spi-registry
+Requires:   rh-maven33-snakeyaml
+Requires:   rh-maven33-sonatype-oss-parent
+Requires:   rh-maven33-sonatype-plugins-parent
+Requires:   rh-maven33-spice-parent
+Requires:   rh-maven33-stax2-api
+Requires:   rh-maven33-testng
+Requires:   rh-maven33-velocity
+Requires:   rh-maven33-weld-parent
+Requires:   rh-maven33-woodstox-core
+Requires:   rh-maven33-wsdl4j
+Requires:   rh-maven33-xml-commons-apis12
+Requires:   rh-maven33-xmlgraphics-commons
+Requires:   rh-maven33-xml-maven-plugin
+Requires:   rh-maven33-xml-stylebook
+Requires:   rh-maven33-xmlunit
+Requires:   rh-maven33-xmvn
+Requires:   rh-maven33-xmvn-api
+Requires:   rh-maven33-xmvn-bisect
+Requires:   rh-maven33-xmvn-connector-aether
+Requires:   rh-maven33-xmvn-connector-ivy
+Requires:   rh-maven33-xmvn-core
+Requires:   rh-maven33-xmvn-install
+Requires:   rh-maven33-xmvn-launcher
+Requires:   rh-maven33-xmvn-mojo
+Requires:   rh-maven33-xmvn-parent-pom
+Requires:   rh-maven33-xmvn-resolve
+Requires:   rh-maven33-xmvn-subst
+Requires:   rh-maven33-xmvn-tools-pom
+Requires:   rh-maven33-xstream
+Requires:   rh-maven33-xstream-benchmark
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -50,78 +381,15 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-Requires:   %{name}-maven-local = %{version}-%{release}
+# XXX use macro
+Requires:   rh-java-common-maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{?scl_prefix_java_common}scldevel-common
+# XXX use macro
+Requires:   rh-java-common-scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
 packages depending on %scl Software Collection.
-
-# javapackages-tools counterparts for rh-maven33 collection
-%package maven-local
-Summary:        Support for Maven packaging
-Requires:       %{?scl_prefix_java_common}javapackages-tools
-Requires:       %{name}-javapackages-local = %{version}-%{release}
-Requires:       %{?scl_prefix}maven
-Requires:       %{?scl_prefix}xmvn >= 2
-Requires:       %{?scl_prefix}xmvn-mojo >= 2
-Requires:       %{?scl_prefix}xmvn-connector-aether >= 2
-# POM files needed by maven itself
-Requires:       %{?scl_prefix}apache-commons-parent
-Requires:       %{?scl_prefix}apache-parent
-Requires:       %{?scl_prefix}geronimo-parent-poms
-Requires:       %{?scl_prefix}httpcomponents-project
-Requires:       %{?scl_prefix}jboss-parent
-Requires:       %{?scl_prefix}jvnet-parent
-Requires:       %{?scl_prefix}maven-parent
-Requires:       %{?scl_prefix}maven-plugins-pom
-Requires:       %{?scl_prefix}mojo-parent
-Requires:       %{?scl_prefix}plexus-components-pom
-Requires:       %{?scl_prefix}plexus-pom
-Requires:       %{?scl_prefix}plexus-tools-pom
-Requires:       %{?scl_prefix}sonatype-oss-parent
-Requires:       %{?scl_prefix}weld-parent
-# Common Maven plugins required by almost every build. It wouldn't make
-# sense to explicitly require them in every package built with Maven.
-Requires:       %{?scl_prefix}maven-assembly-plugin
-Requires:       %{?scl_prefix}maven-compiler-plugin
-Requires:       %{?scl_prefix}maven-enforcer-plugin
-Requires:       %{?scl_prefix}maven-jar-plugin
-Requires:       %{?scl_prefix}maven-javadoc-plugin
-Requires:       %{?scl_prefix}maven-resources-plugin
-Requires:       %{?scl_prefix}maven-surefire-plugin
-# Tests based on JUnit are very common and JUnit itself is small.
-# Include JUnit provider for Surefire just for convenience.
-Requires:       %{?scl_prefix}maven-surefire-provider-junit
-# testng is quite common as well
-Requires:       %{?scl_prefix}maven-surefire-provider-testng
-Requires:       %{?scl_prefix_java_common}maven-local-support
-
-%description maven-local
-This package provides tools to support packaging Maven artifacts.
-
-%package ivy-local
-Summary:        Support for Apache Ivy packaging
-Requires:       %{?scl_prefix_java_common}javapackages-tools
-Requires:       %{name}-javapackages-local = %{version}-%{release}
-Requires:       %{?scl_prefix}apache-ivy
-Requires:       %{?scl_prefix}xmvn-connector-ivy >= 2
-Requires:       %{?scl_prefix_java_common}ivy-local-support
-
-%description ivy-local
-This package provides tools to support Apache Ivy packaging.
-
-%package javapackages-local
-Summary:        Non-essential tools for Java packaging
-Requires:       %{?scl_prefix_java_common}javapackages-tools
-Requires:       %{?scl_prefix}xmvn-install >= 2
-Requires:       %{?scl_prefix}xmvn-subst >= 2
-Requires:       %{?scl_prefix}xmvn-resolve >= 2
-Requires:       %{?scl_prefix_java_common}javapackages-local-support
-
-%description javapackages-local
-This package provides non-essential tools for Java packaging.
 
 %prep
 %setup -c -T
@@ -129,7 +397,8 @@ This package provides non-essential tools for Java packaging.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
-. /opt/rh/%{scl_java_common}/enable
+# XXX use macro
+. /opt/rh/rh-java-common/enable
 
 # Generic variables
 export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
@@ -137,8 +406,8 @@ export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
 export JAVACONFDIRS="%{_sysconfdir}/java\${JAVACONFDIRS:+:}\${JAVACONFDIRS:-}"
-export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg:\${XDG_CONFIG_DIRS:-/etc/xdg}"
-export XDG_DATA_DIRS="%{_datadir}:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_CONFIG_DIRS="%{_sysconfdir}/xdg\${XDG_CONFIG_DIRS:+:}\${XDG_CONFIG_DIRS:-}"
+export XDG_DATA_DIRS="%{_datadir}\${XDG_DATA_DIRS:+:}\${XDG_DATA_DIRS:-}"
 EOF
 
 # Generate Eclipse configuration file
@@ -272,53 +541,7 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files scldevel
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
-%files maven-local
-%files ivy-local
-%files javapackages-local
-
 %changelog
-* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-15
-- Fix macros.rh-maven33
-- Revert temporary changes in xmvn config
-
-* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-14
-- Resolve from local repository first
-
-* Fri Feb 05 2016 Michal Srb <msrb@redhat.com> - 1-13
-- Temporarily resolve from rh-java-common first
-
-* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-12
-- Correctly handle XDG env. variables in enable script (Resolves: rhbz#1300623)
-
-* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-11
-- Rebuild
-
-* Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1-10
-- Get rid of transitive maven30 dependency
-
-* Tue Jan 26 2016 Michal Srb <msrb@redhat.com> - 1-9
-- Fix R on javapackages-tools
-
-* Tue Jan 19 2016 Michal Srb <msrb@redhat.com> - 1-8
-- Introduce maven33-specific "local" subpackages
-- Drop temp requires
-
-* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-7
-- Remove fake sonatype provides
-- Partially remove maven-wagon requires
-
-* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-6
-- Fix R on rh-java-common packages
-
-* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-5
-- Remove maven30 from PATH
-
-* Thu Jan 14 2016 Michal Srb <msrb@redhat.com> - 1-4
-- Reduce number of fake provides
-
-* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
-- Temporarly add maven30 to PATH
-
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1-2
 - Temporarily require all maven33 packages
 
