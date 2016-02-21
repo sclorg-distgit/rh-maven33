@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -33,16 +33,24 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
+# XXX fake provides - remove
+Provides:   rh-maven33-sisu-inject-bean
+Provides:   rh-maven33-sisu-inject-plexus
+Provides:   rh-maven33-mvn(org.sonatype.sisu:sisu-inject-plexus)
+Provides:   rh-maven33-aether-api
+Provides:   rh-maven33-aether-connector-file
+Provides:   rh-maven33-aether-connector-wagon
+Provides:   rh-maven33-aether-impl
+Provides:   rh-maven33-aether-spi
+Provides:   rh-maven33-aether-test-util
+Provides:   rh-maven33-aether-util
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-api)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-connector-wagon)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-impl)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-spi)
+Provides:   rh-maven33-mvn(org.sonatype.aether:aether-util)
 # XXX remove
 Requires:   rh-maven33
-Requires:   rh-maven33-aether
-Requires:   rh-maven33-aether-api
-Requires:   rh-maven33-aether-connector-file
-Requires:   rh-maven33-aether-connector-wagon
-Requires:   rh-maven33-aether-impl
-Requires:   rh-maven33-aether-spi
-Requires:   rh-maven33-aether-test-util
-Requires:   rh-maven33-aether-util
 Requires:   rh-maven33-ant-antunit
 Requires:   rh-maven33-ant-contrib
 Requires:   rh-maven33-aopalliance
@@ -310,32 +318,6 @@ Requires:   rh-maven33-sac
 Requires:   rh-maven33-saxon
 Requires:   rh-maven33-saxon-scripts
 Requires:   rh-maven33-scldevel
-Requires:   rh-maven33-sisu
-Requires:   rh-maven33-sisu-bean
-Requires:   rh-maven33-sisu-bean-binders
-Requires:   rh-maven33-sisu-bean-containers
-Requires:   rh-maven33-sisu-bean-converters
-Requires:   rh-maven33-sisu-bean-inject
-Requires:   rh-maven33-sisu-bean-locators
-Requires:   rh-maven33-sisu-bean-reflect
-Requires:   rh-maven33-sisu-bean-scanners
-Requires:   rh-maven33-sisu-containers
-Requires:   rh-maven33-sisu-inject
-Requires:   rh-maven33-sisu-inject-bean
-Requires:   rh-maven33-sisu-inject-plexus
-Requires:   rh-maven33-sisu-maven-plugin
-Requires:   rh-maven33-sisu-osgi-registry
-Requires:   rh-maven33-sisu-parent
-Requires:   rh-maven33-sisu-plexus
-Requires:   rh-maven33-sisu-plexus-binders
-Requires:   rh-maven33-sisu-plexus-converters
-Requires:   rh-maven33-sisu-plexus-lifecycles
-Requires:   rh-maven33-sisu-plexus-locators
-Requires:   rh-maven33-sisu-plexus-metadata
-Requires:   rh-maven33-sisu-plexus-scanners
-Requires:   rh-maven33-sisu-plexus-shim
-Requires:   rh-maven33-sisu-registries
-Requires:   rh-maven33-sisu-spi-registry
 Requires:   rh-maven33-snakeyaml
 Requires:   rh-maven33-sonatype-oss-parent
 Requires:   rh-maven33-sonatype-plugins-parent
@@ -401,7 +383,8 @@ cat <<EOF >enable
 . /opt/rh/rh-java-common/enable
 
 # Generic variables
-export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
+# XXX remove maven30 from PATH
+export PATH="/opt/rh/maven30/root/usr/bin:%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
@@ -542,6 +525,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
+- Temporarly add maven30 to PATH
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1-2
 - Temporarily require all maven33 packages
 
