@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -37,13 +37,13 @@ Requires:   java-1.7.0-openjdk-devel
 Provides:   rh-maven33-sisu-inject-bean
 Provides:   rh-maven33-sisu-inject-plexus
 Provides:   rh-maven33-mvn(org.sonatype.sisu:sisu-inject-plexus)
-Provides:   rh-maven33-aether-api
-Provides:   rh-maven33-aether-connector-file
+#Provides:   rh-maven33-aether-api
+#Provides:   rh-maven33-aether-connector-file
 Provides:   rh-maven33-aether-connector-wagon
-Provides:   rh-maven33-aether-impl
-Provides:   rh-maven33-aether-spi
-Provides:   rh-maven33-aether-test-util
-Provides:   rh-maven33-aether-util
+#Provides:   rh-maven33-aether-impl
+#Provides:   rh-maven33-aether-spi
+#Provides:   rh-maven33-aether-test-util
+#Provides:   rh-maven33-aether-util
 Provides:   rh-maven33-mvn(org.sonatype.aether:aether-api)
 Provides:   rh-maven33-mvn(org.sonatype.aether:aether-connector-wagon)
 Provides:   rh-maven33-mvn(org.sonatype.aether:aether-impl)
@@ -525,6 +525,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Jan 14 2016 Michal Srb <msrb@redhat.com> - 1-4
+- Reduce number of fake provides
+
 * Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
 - Temporarly add maven30 to PATH
 
