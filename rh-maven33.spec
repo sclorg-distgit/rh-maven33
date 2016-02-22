@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    4%{?dist}
+Release:    6%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -20,8 +20,6 @@ Source5:    LICENSE
 
 BuildRequires:  help2man
 BuildRequires:  scl-utils-build
-# XXX remove
-BuildRequires:  jpackage-utils
 
 Requires:         %{name}-runtime = %{version}-%{release}
 Requires:         %{scl_name}-maven
@@ -363,11 +361,9 @@ to build %scl Software Collection.
 
 %package scldevel
 Summary:    Package shipping development files for %scl
-# XXX use macro
-Requires:   rh-java-common-maven-local
+Requires:   %{?scl_prefix_java_common}maven-local
 Requires:   %{name}-runtime = %{version}-%{release}
-# XXX use macro
-Requires:   rh-java-common-scldevel
+Requires:   %{?scl_prefix_java_common}scldevel
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -379,12 +375,10 @@ packages depending on %scl Software Collection.
 # SCL enable script #
 #===================#
 cat <<EOF >enable
-# XXX use macro
-. /opt/rh/rh-java-common/enable
+. /opt/rh/%{scl_java_common}/enable
 
 # Generic variables
-# XXX remove maven30 from PATH
-export PATH="/opt/rh/maven30/root/usr/bin:%{_bindir}:\${PATH:-/bin:/usr/bin}"
+export PATH="%{_bindir}:\${PATH:-/bin:/usr/bin}"
 export MANPATH="%{_mandir}\${MANPATH:+:}\${MANPATH:-}"
 export PYTHONPATH="%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:}\${PYTHONPATH:-}"
 
@@ -525,6 +519,12 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-6
+- Fix R on rh-java-common packages
+
+* Mon Jan 18 2016 Michal Srb <msrb@redhat.com> - 1-5
+- Remove maven30 from PATH
+
 * Thu Jan 14 2016 Michal Srb <msrb@redhat.com> - 1-4
 - Reduce number of fake provides
 
