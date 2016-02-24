@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    8%{?dist}
+Release:    11%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -52,7 +52,7 @@ to build %scl Software Collection.
 Summary:    Package shipping development files for %scl
 Requires:   %{name}-maven-local = %{version}-%{release}
 Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{?scl_prefix_java_common}scldevel
+Requires:   %{?scl_prefix_java_common}scldevel-common
 
 %description scldevel
 Package shipping development files, especially useful for development of
@@ -96,8 +96,7 @@ Requires:       %{?scl_prefix}maven-surefire-plugin
 Requires:       %{?scl_prefix}maven-surefire-provider-junit
 # testng is quite common as well
 Requires:       %{?scl_prefix}maven-surefire-provider-testng
-# XXX - replace with correct subpackage once rhbz#1298464 is resolved
-Requires:       %{?scl_prefix_java_common}maven-local
+Requires:       %{?scl_prefix_java_common}maven-local-support
 
 %description maven-local
 This package provides tools to support packaging Maven artifacts.
@@ -108,8 +107,7 @@ Requires:       %{?scl_prefix_java_common}javapackages-tools
 Requires:       %{name}-javapackages-local = %{version}-%{release}
 Requires:       %{?scl_prefix}apache-ivy
 Requires:       %{?scl_prefix}xmvn-connector-ivy >= 2
-# XXX - replace with correct subpackage once rhbz#1298464 is resolved
-Requires:       %{?scl_prefix_java_common}ivy-local
+Requires:       %{?scl_prefix_java_common}ivy-local-support
 
 %description ivy-local
 This package provides tools to support Apache Ivy packaging.
@@ -120,8 +118,7 @@ Requires:       %{?scl_prefix_java_common}javapackages-tools
 Requires:       %{?scl_prefix}xmvn-install >= 2
 Requires:       %{?scl_prefix}xmvn-subst >= 2
 Requires:       %{?scl_prefix}xmvn-resolve >= 2
-# XXX - replace with correct subpackage once rhbz#1298464 is resolved
-Requires:       %{?scl_prefix_java_common}javapackages-local
+Requires:       %{?scl_prefix_java_common}javapackages-local-support
 
 %description javapackages-local
 This package provides non-essential tools for Java packaging.
@@ -280,6 +277,15 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-11
+- Rebuild
+
+* Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1-10
+- Get rid of transitive maven30 dependency
+
+* Tue Jan 26 2016 Michal Srb <msrb@redhat.com> - 1-9
+- Fix R on javapackages-tools
+
 * Tue Jan 19 2016 Michal Srb <msrb@redhat.com> - 1-8
 - Introduce maven33-specific "local" subpackages
 - Drop temp requires
