@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    13%{?dist}
+Release:    14%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -277,6 +277,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-14
+- Resolve from local repository first
+
 * Fri Feb 05 2016 Michal Srb <msrb@redhat.com> - 1-13
 - Temporarily resolve from rh-java-common first
 
