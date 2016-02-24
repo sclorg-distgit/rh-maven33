@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    12%{?dist}
+Release:    13%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -277,6 +277,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Fri Feb 05 2016 Michal Srb <msrb@redhat.com> - 1-13
+- Temporarily resolve from rh-java-common first
+
 * Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1-12
 - Correctly handle XDG env. variables in enable script (Resolves: rhbz#1300623)
 
