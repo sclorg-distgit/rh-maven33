@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    15%{?dist}
+Release:    16%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -31,10 +31,6 @@ This is the main package for the %scl Software Collection.
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
 Requires:   java-1.7.0-openjdk-devel
-# XXX remove when BRs are fixed in all rh-maven33 packages
-Requires:   %{name}-maven-local = %{version}-%{release}
-Requires:   %{name}-ivy-local = %{version}-%{release}
-Requires:   %{name}-javapackages-local = %{version}-%{release}
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -277,6 +273,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Thu Feb 11 2016 Michal Srb <msrb@redhat.com> - 1-16
+- Remove temporary requires
+
 * Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1-15
 - Fix macros.rh-maven33
 - Revert temporary changes in xmvn config
