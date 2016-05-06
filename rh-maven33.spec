@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    16%{?dist}
+Release:    17%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -240,6 +240,7 @@ install -m 755 -d %{buildroot}%{_mandir}/man7
 install -m 755 -d %{buildroot}%{_datadir}/maven-metadata
 install -m 755 -d %{buildroot}%{_mavenpomdir}
 install -m 755 -d %{buildroot}%{_datadir}/xmvn
+install -m 755 -d %{buildroot}%{_datadir}/licenses
 
 # Empty package (no file content).  The sole purpose of this package
 # is collecting its dependencies so that the whole SCL can be
@@ -261,6 +262,7 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %dir %{_datadir}/maven-metadata
 %dir %{_mavenpomdir}
 %dir %{_datadir}/xmvn
+%dir %{_datadir}/licenses
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -273,6 +275,9 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %files javapackages-local
 
 %changelog
+* Thu Apr 14 2016 Michal Srb <msrb@redhat.com> - 1-17
+- Fix directory ownership (Resolves: rhbz#1325866)
+
 * Thu Feb 11 2016 Michal Srb <msrb@redhat.com> - 1-16
 - Remove temporary requires
 
