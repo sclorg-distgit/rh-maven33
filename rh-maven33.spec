@@ -7,7 +7,7 @@
 
 Name:       %scl_name
 Version:    1
-Release:    17%{?dist}
+Release:    18%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -30,7 +30,7 @@ This is the main package for the %scl Software Collection.
 %package runtime
 Summary:    Package that handles %scl Software Collection.
 Requires:   scl-utils
-Requires:   java-1.7.0-openjdk-devel
+Requires:   java-devel-openjdk >= 1:1.7
 
 %description runtime
 Package shipping essential scripts to work with the %scl Software Collection.
@@ -275,6 +275,10 @@ install -m 755 -d %{buildroot}%{_datadir}/licenses
 %files javapackages-local
 
 %changelog
+* Thu Dec 22 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-18
+- Switch to java-devel-openjdk requires
+- Resolves: rhbz#1402447
+
 * Thu Apr 14 2016 Michal Srb <msrb@redhat.com> - 1-17
 - Fix directory ownership (Resolves: rhbz#1325866)
 
